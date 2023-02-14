@@ -14,8 +14,12 @@ clean:
 # Build
 # ===========================
 
+.PHONY: directories
+directories:
+	mkdir -p $(BUILD_DIR)
+
 .PHONY: build
-build:
+build: directories
 ifeq ("$(wildcard $(JETSON_OUTPUT_DIR))","")
 	# Extract Jetson (e.g. ~/Downloads/Jetson_Linux_R35.1.0_aarch64.tbz2)
 	tar xvf $(JETSON_PATH) --directory=$(BUILD_DIR)
