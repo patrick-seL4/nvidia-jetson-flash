@@ -1,0 +1,677 @@
+ ~/Dow/j/Linux_for_Tegra  sudo ./flash.sh jetson-xavier-nx-devkit-emmc mmcblk0p1
+###############################################################################
+# L4T BSP Information:
+# R35 , REVISION: 2.1
+# User release: 0.0
+###############################################################################
+# Target Board Information:
+# Name: jetson-xavier-nx-devkit-emmc, Board Family: t186ref, SoC: Tegra 194, 
+# OpMode: production, Boot Authentication: NS, 
+# Disk encryption: disabled ,
+###############################################################################
+copying soft_fuses(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-soft-fuses-l4t.cfg)... done.
+./tegraflash.py --chip 0x19 --applet "/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/mb1_t194_prod.bin" --skipuid --soft_fuses tegra194-mb1-soft-fuses-l4t.cfg --bins "mb2_applet nvtboot_applet_t194.bin" --cmd "dump eeprom boardinfo cvm.bin;reboot recovery" 
+Welcome to Tegra Flash
+version 1.0.0
+Type ? or help for help and q or quit to exit
+Use ! to execute system commands
+ 
+[   0.0316 ] Generating RCM messages
+[   0.0345 ] tegrahost_v2 --chip 0x19 0 --magicid MB1B --appendsigheader /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/mb1_t194_prod.bin zerosbk
+[   0.0359 ] Header already present for /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/mb1_t194_prod.bin
+[   0.0553 ] tegrasign_v3.py --key None --getmode mode.txt
+[   0.0557 ] Assuming zero filled SBK key
+[   0.0584 ] tegrasign_v3.py --file /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/mb1_t194_prod_sigheader.bin --key None --length 1136 --offset 2960 --pubkeyhash pub_key.key
+[   0.0588 ] Assuming zero filled SBK key
+[   0.0669 ] Warning: pub_key.key is not found
+[   0.0605 ] tegrahost_v2 --chip 0x19 0 --updatesigheader /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/mb1_t194_prod_sigheader.bin /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/mb1_t194_prod_sigheader.hash zerosbk
+[   0.0702 ] tegrabct_v2 --chip 0x19 0 --sfuse tegra194-mb1-soft-fuses-l4t.cfg.pdf sfuse.bin
+[   0.0768 ] tegrarcm_v2 --listrcm rcm_list.xml --chip 0x19 0 --sfuses sfuse.bin --download rcm /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/mb1_t194_prod_sigheader.bin 0 0
+[   0.0799 ] RCM 0 is saved as rcm_0.rcm
+[   0.0860 ] RCM 1 is saved as rcm_1.rcm
+[   0.0860 ] RCM 2 is saved as rcm_2.rcm
+[   0.0860 ] List of rcm files are saved in rcm_list.xml
+[   0.0860 ] 
+[   0.0861 ] Signing RCM messages
+[   0.0996 ] tegrasign_v3.py --key None --list rcm_list.xml --getmontgomeryvalues montgomery.bin --pubkeyhash pub_key.key
+[   0.0999 ] Assuming zero filled SBK key
+[   0.1069 ] Warning: pub_key.key is not found
+[   0.0971 ] Copying signature to RCM mesages
+[   0.0995 ] tegrarcm_v2 --chip 0x19 0 --updatesig rcm_list_signed.xml
+[   0.1017 ] Boot Rom communication
+[   0.1042 ] tegrarcm_v2 --chip 0x19 0 --rcm rcm_list_signed.xml --skipuid
+[   0.1055 ] RCM version 0X190001
+[   0.8593 ] Boot Rom communication completed
+[   2.8793 ] tegrarcm_v2 --isapplet
+[   2.8821 ] Applet version 01.00.0000
+[   3.6128 ] tegrarcm_v2 --ismb2
+[   4.2108 ] tegrahost_v2 --chip 0x19 --align nvtboot_applet_t194_aligned.bin
+[   4.2159 ] tegrahost_v2 --chip 0x19 0 --magicid PLDT --appendsigheader nvtboot_applet_t194_aligned.bin zerosbk
+[   4.2175 ] adding BCH for nvtboot_applet_t194_aligned.bin
+[   4.2361 ] tegrasign_v3.py --key None --list nvtboot_applet_t194_aligned_sigheader.bin_list.xml --pubkeyhash pub_key.key
+[   4.2365 ] Assuming zero filled SBK key
+[   4.2392 ] Warning: pub_key.key is not found
+[   4.2320 ] tegrahost_v2 --chip 0x19 0 --updatesigheader nvtboot_applet_t194_aligned_sigheader.bin.encrypt nvtboot_applet_t194_aligned_sigheader.bin.hash zerosbk
+[   4.2387 ] tegrarcm_v2 --download mb2 nvtboot_applet_t194_sigheader.bin.encrypt
+[   4.2403 ] Applet version 01.00.0000
+[   5.8287 ] Sending mb2
+[   5.8288 ] [................................................] 100%
+[   5.8480 ] tegrarcm_v2 --boot recovery
+[   5.8497 ] Applet version 01.00.0000
+[   8.0261 ] tegrarcm_v2 --isapplet
+[   9.2025 ] tegrarcm_v2 --ismb2
+[   9.2051 ] MB2 Applet version 01.00.0000
+[   9.3625 ] tegrarcm_v2 --ismb2
+[   9.3651 ] MB2 Applet version 01.00.0000
+[  10.5464 ] Retrieving board information
+[  10.5503 ] tegrarcm_v2 --oem platformdetails chip chip_info.bin
+[  10.5516 ] MB2 Applet version 01.00.0000
+[  11.1356 ] Saved platform info in chip_info.bin
+[  11.1394 ] Chip minor revision: 2
+[  11.1397 ] Bootrom revision: 0xf
+[  11.1399 ] Ram code: 0x1
+[  11.1400 ] Chip sku: 0xde
+[  11.1402 ] Chip Sample: non es
+[  11.1403 ] 
+[  11.1407 ] Retrieving EEPROM data
+[  11.1408 ] tegrarcm_v2 --oem platformdetails eeprom cvm /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/cvm.bin
+[  11.1426 ] MB2 Applet version 01.00.0000
+[  12.7631 ] Saved platform info in /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/cvm.bin
+[  12.8032 ] Rebooting to recovery mode
+[  12.8067 ] tegrarcm_v2 --ismb2
+[  12.8090 ] MB2 Applet version 01.00.0000
+[  13.5375 ] Rebooting to recovery mode
+[  13.5424 ] tegrarcm_v2 --reboot recovery
+[  13.5454 ] MB2 Applet version 01.00.0000
+Board ID(3668) version(301) sku(0001) revision(G.0)
+lz4c installed at /usr/bin/lz4c
+Compressing /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/tegra194-a02-bpmp-p3668-a00.dtb ...
+Copy /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/kernel/dtb/tegra194-p3668-0001-p3509-0000.dtb to /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/kernel/dtb/tegra194-p3668-0001-p3509-0000.dtb.rec
+NVDISP+UEFI in bootloader/nvdisp-init.bin ..
+copying bctfile(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-memcfg-p3668-0001-a00.cfg)... done.
+copying bctfile1(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-memcfg-sw-override.cfg)... done.
+copying minratchet_config(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-ratchet-p3668.cfg)... done.
+copying device_config(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra19x-mb1-bct-device-qspi-p3668.cfg)... done.
+copying misc_cold_boot_config(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-misc-l4t.cfg)... done.
+copying misc_config(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-misc-flash.cfg)... done.
+copying pinmux_config(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra19x-mb1-pinmux-p3668-a01.cfg)... done.
+copying gpioint_config(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg)... done.
+copying pmic_config(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-pmic-p3668-0001-a00.cfg)... done.
+copying pmc_config(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra19x-mb1-padvoltage-p3668-a01.cfg)... done.
+copying prod_config(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra19x-mb1-prod-p3668-0001-a00.cfg)... done.
+copying scr_config(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-scr-cbb-mini-p3668.cfg)... done.
+copying scr_cold_boot_config(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-scr-cbb-mini-p3668.cfg)... done.
+copying bootrom_config(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-reset-p3668-0001-a00.cfg)... done.
+copying dev_params(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-br-bct-qspi-l4t.cfg)... done.
+copying dev_params_b(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-br-bct_b-qspi-l4t.cfg)... done.
+Existing bootloader(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/nvtboot_cpu_t194.bin) reused.
+copying initrd(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/l4t_initrd.img)... done.
+bl is uefi
+Making Boot image... done.
+Not signing of boot.img
+Making recovery ramdisk for recovery image...
+Re-generating recovery ramdisk for recovery image...
+/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/ramdisk_tmp /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra
+36188 blocks
+
+gzip: /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/kernel/Image: not in gzip format
+_BASE_KERNEL_VERSION=5.10.104-tegra
+54382 blocks
+Making Recovery image...
+copying recdtbfile(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/kernel/dtb/tegra194-p3668-0001-p3509-0000.dtb.rec)... done.
+20+0 records in
+20+0 records out
+20 bytes copied, 0.000167242 s, 120 kB/s
+Existing sosfile(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/mb1_t194_prod.bin) reused.
+Existing tegraboot(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/nvtboot_t194.bin) reused.
+Existing cpu_bootloader(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/nvtboot_cpu_t194.bin) reused.
+Existing mb2blfile(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/nvtboot_recovery_t194.bin) reused.
+Existing mtspreboot(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/preboot_c10_prod_cr.bin) reused.
+Existing mcepreboot(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/mce_c10_prod_cr.bin) reused.
+Existing mtsproper(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/mts_c10_prod_cr.bin) reused.
+Existing mb1file(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/mb1_t194_prod.bin) reused.
+Existing bpffile(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/bpmp-2_t194.bin) reused.
+Existing bpfdtbfile(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/tegra194-a02-bpmp-p3668-a00_lz4.dtb) reused.
+Existing scefile(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/camera-rtcpu-sce.img) reused.
+Existing camerafw(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/camera-rtcpu-t194-rce.img) reused.
+Existing apefile(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/adsp-fw.bin) reused.
+Existing spefile(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/spe_t194.bin) reused.
+Existing wb0boot(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/warmboot_t194_prod.bin) reused.
+Existing tosfile(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/tos-mon-only_t194.img) reused.
+Existing eksfile(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/eks_t194.img) reused.
+copying soft_fuses(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-soft-fuses-l4t.cfg)... done.
+copying dtbfile(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/kernel/dtb/tegra194-p3668-0001-p3509-0000.dtb)... done.
+Copying nv_boot_control.conf to rootfs
+	populating kernel to rootfs... done.
+	populating initrd to rootfs... done.
+	populating kernel_tegra194-p3668-0001-p3509-0000.dtb to rootfs... done.
+Making system.img... 
+	Setting "FDT /boot/dtb/kernel_tegra194-p3668-0001-p3509-0000.dtb" successfully in the extlinux.conf...done.
+	populating rootfs from /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/rootfs ... 	populating /boot/extlinux/extlinux.conf ... done.
+	Sync'ing system.img ... done.
+	Converting RAW image to Sparse image... done.
+system.img built successfully. 
+Not signing of kernel-dtb
+Existing tbcfile(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/nvdisp-init.bin) reused.
+131072+0 records in
+131072+0 records out
+67108864 bytes (67 MB, 64 MiB) copied, 0.285106 s, 235 MB/s
+	Sync'ing esp.img ... done.
+copying tbcdtbfile(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/kernel/dtb/tegra194-p3668-0001-p3509-0000.dtb)... done.
+copying cfgfile(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/t186ref/cfg/flash_l4t_t194_spi_emmc_p3668.xml) to flash.xml... done.
+done.
+Existing flasher(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/nvtboot_recovery_cpu_t194.bin) reused.
+Existing flashapp(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/tegraflash.py) reused.
+copying overlay_dtb(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/kernel/dtb/L4TConfiguration.dtbo)... done.
+copying overlay_dtb(/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/kernel/dtb/tegra194-p3668-p3509-overlay.dtbo)... done.
+./tegraflash.py --bl nvtboot_recovery_cpu_t194.bin --sdram_config tegra194-mb1-bct-memcfg-p3668-0001-a00.cfg,tegra194-memcfg-sw-override.cfg  --odmdata 0xB8190000  --overlay_dtb L4TConfiguration.dtbo,tegra194-p3668-p3509-overlay.dtbo,  --bldtb tegra194-p3668-0001-p3509-0000.dtb --applet mb1_t194_prod.bin --cmd "flash; reboot" --soft_fuses tegra194-mb1-soft-fuses-l4t.cfg  --cfg flash.xml --chip 0x19 --minratchet_config tegra194-mb1-bct-ratchet-p3668.cfg --device_config tegra19x-mb1-bct-device-qspi-p3668.cfg --misc_cold_boot_config tegra194-mb1-bct-misc-l4t.cfg --misc_config tegra194-mb1-bct-misc-flash.cfg --pinmux_config tegra19x-mb1-pinmux-p3668-a01.cfg --gpioint_config tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg --pmic_config tegra194-mb1-bct-pmic-p3668-0001-a00.cfg --pmc_config tegra19x-mb1-padvoltage-p3668-a01.cfg --prod_config tegra19x-mb1-prod-p3668-0001-a00.cfg --scr_config tegra194-mb1-bct-scr-cbb-mini-p3668.cfg --scr_cold_boot_config tegra194-mb1-bct-scr-cbb-mini-p3668.cfg --br_cmd_config tegra194-mb1-bct-reset-p3668-0001-a00.cfg --dev_params tegra194-br-bct-qspi-l4t.cfg,tegra194-br-bct_b-qspi-l4t.cfg  --bin "mb2_bootloader nvtboot_recovery_t194.bin; mts_preboot preboot_c10_prod_cr.bin; mts_mce mce_c10_prod_cr.bin; mts_proper mts_c10_prod_cr.bin; bpmp_fw bpmp-2_t194.bin; bpmp_fw_dtb tegra194-a02-bpmp-p3668-a00_lz4.dtb; spe_fw spe_t194.bin; tos tos-mon-only_t194.img; eks eks_t194.img; bootloader_dtb tegra194-p3668-0001-p3509-0000.dtb"   --secondary_gpt_backup  --bct_backup  --boot_chain A 
+saving flash command in /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/flashcmd.txt
+saving Windows flash command to /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/flash_win.bat
+*** Flashing target device started. ***
+Welcome to Tegra Flash
+version 1.0.0
+Type ? or help for help and q or quit to exit
+Use ! to execute system commands
+ 
+[   0.0303 ] tegrasign_v3.py --key None --getmode mode.txt
+[   0.0307 ] Assuming zero filled SBK key
+[   0.0033 ] Generating RCM messages
+[   0.0063 ] tegrahost_v2 --chip 0x19 0 --magicid MB1B --appendsigheader mb1_t194_prod.bin zerosbk
+[   0.0077 ] Header already present for mb1_t194_prod.bin
+[   0.0447 ] tegrasign_v3.py --key None --getmode mode.txt
+[   0.0451 ] Assuming zero filled SBK key
+[   0.0476 ] tegrasign_v3.py --file mb1_t194_prod_sigheader.bin --key None --length 1136 --offset 2960 --pubkeyhash pub_key.key
+[   0.0480 ] Assuming zero filled SBK key
+[   0.0554 ] Warning: pub_key.key is not found
+[   0.0304 ] tegrahost_v2 --chip 0x19 0 --updatesigheader mb1_t194_prod_sigheader.bin mb1_t194_prod_sigheader.hash zerosbk
+[   0.0403 ] tegrabct_v2 --chip 0x19 0 --sfuse tegra194-mb1-soft-fuses-l4t.cfg sfuse.bin
+[   0.0461 ] tegrabct_v2 --chip 0x19 0 --ratchet_blob ratchet_blob.bin --minratchet tegra194-mb1-bct-ratchet-p3668.cfg
+[   0.0473 ] FwIndex: 1, MinRatchetLevel: 0
+[   0.0487 ] FwIndex: 2, MinRatchetLevel: 0
+[   0.0487 ] FwIndex: 3, MinRatchetLevel: 0
+[   0.0487 ] FwIndex: 4, MinRatchetLevel: 0
+[   0.0487 ] FwIndex: 5, MinRatchetLevel: 0
+[   0.0487 ] FwIndex: 6, MinRatchetLevel: 0
+[   0.0487 ] FwIndex: 7, MinRatchetLevel: 0
+[   0.0487 ] FwIndex: 11, MinRatchetLevel: 0
+[   0.0487 ] FwIndex: 12, MinRatchetLevel: 0
+[   0.0487 ] FwIndex: 13, MinRatchetLevel: 0
+[   0.0487 ] FwIndex: 14, MinRatchetLevel: 0
+[   0.0488 ] FwIndex: 15, MinRatchetLevel: 0
+[   0.0488 ] FwIndex: 16, MinRatchetLevel: 0
+[   0.0488 ] FwIndex: 17, MinRatchetLevel: 0
+[   0.0488 ] FwIndex: 18, MinRatchetLevel: 0
+[   0.0488 ] FwIndex: 19, MinRatchetLevel: 0
+[   0.0488 ] FwIndex: 30, MinRatchetLevel: 0
+[   0.0488 ] FwIndex: 31, MinRatchetLevel: 0
+[   0.0488 ] 
+[   0.0518 ] tegrarcm_v2 --listrcm rcm_list.xml --chip 0x19 0 --sfuses sfuse.bin --download rcm mb1_t194_prod_sigheader.bin 0 0
+[   0.0531 ] RCM 0 is saved as rcm_0.rcm
+[   0.0599 ] RCM 1 is saved as rcm_1.rcm
+[   0.0600 ] RCM 2 is saved as rcm_2.rcm
+[   0.0601 ] List of rcm files are saved in rcm_list.xml
+[   0.0605 ] Signing RCM messages
+[   0.0907 ] tegrasign_v3.py --key None --list rcm_list.xml --getmontgomeryvalues montgomery.bin --pubkeyhash pub_key.key
+[   0.0911 ] Assuming zero filled SBK key
+[   0.0986 ] Warning: pub_key.key is not found
+[   0.0709 ] Copying signature to RCM mesages
+[   0.0736 ] tegrarcm_v2 --chip 0x19 0 --updatesig rcm_list_signed.xml
+[   0.0760 ] odmdata (to decode) = 3088646144
+[   0.0760 ] Odmdata strings: PCIE_XBAR_8_1_1_0_1,UFS_DISABLED,NVHS_PCIE,enable-debug-console,enable-denver-wdt
+[   0.0760 ] Bpmp odmdata config: {'pcie-xbar-config': [0, 1, 'PCIE_XBAR_8_1_1_0_1'], 'pcie-c0-endpoint-enable': [1, 0, ''], 'pcie-c4-endpoint-enable': [1, 0, ''], 'ufs-config': [0, 1, 'UFS_DISABLED'], 'sata-enable': [1, 0, ''], 'nvhs-owner': [0, 1, 'PCIE'], 'pcie-c5-endpoint-enable': [1, 0, '']}
+[   0.0783 ] bpmp_dtb is compressed; decompressing...
+[   0.0783 ] lz4c -df tegra194-a02-bpmp-p3668-a00_lz4.dtb tegra194-a02-bpmp-p3668-a00_lz4_with_odm.dtb
+[   0.0809 ]                                                                           [   0.0829 ] tegra194-a02-bpmp-p3 : decoded 442560 bytes 
+[   0.0829 ] 
+[   0.2346 ] Re-compressing updated bpmp_dtb
+[   0.2346 ] lz4c -zf tegra194-a02-bpmp-p3668-a00_lz4_with_odm.dtb tegra194-a02-bpmp-p3668-a00_lz4.dtb
+[   0.2359 ]                                                                           [   0.2371 ] Compressed 442529 bytes into 32067 bytes ==> 7.25%
+[   0.2371 ] 
+[   0.6142 ] Concatenating L4TConfiguration.dtbo,tegra194-p3668-p3509-overlay.dtbo to tegra194-p3668-0001-p3509-0000_with_odm_overlay.dtb
+[   0.6147 ] Parsing partition layout
+[   0.6168 ] tegraparser_v2 --pt flash.xml.tmp
+[   0.6202 ] Reading ramcode from backup chip_info.bin file
+[   0.6204 ] RAMCODE Read from Device: 1
+
+[   0.6204 ] Disable BPMP dtb trim, using default dtb
+[   0.6205 ] 
+[   0.6205 ] Creating list of images to be signed
+[   0.6229 ] tegrahost_v2 --chip 0x19 0 --partitionlayout flash.xml.bin --ratchet_blob ratchet_blob.bin --list images_list.xml zerosbk
+[   0.6243 ] MB1: Nvheader already present is mb1_t194_prod_aligned.bin
+[   0.6255 ] Header already present for mb1_t194_prod_aligned_sigheader.bin
+[   0.6258 ] MB1: Nvheader already present is mb1_b_t194_prod_aligned.bin
+[   0.6320 ] Header already present for mb1_b_t194_prod_aligned_sigheader.bin
+[   0.6326 ] adding BCH for spe_t194_aligned.bin
+[   0.6374 ] adding BCH for nvtboot_t194_aligned.bin
+[   0.6410 ] Header already present for preboot_c10_prod_cr_aligned.bin
+[   0.6474 ] Header already present for mce_c10_prod_cr_aligned.bin
+[   0.6483 ] adding BCH for mts_c10_prod_cr_aligned.bin
+[   0.6623 ] Header already present for warmboot_t194_prod_aligned.bin
+[   0.7589 ] adding BCH for xusb_sil_rel_fw_aligned
+[   0.7600 ] adding BCH for nvdisp-init_aligned.bin
+[   0.7704 ] adding BCH for tegra194-p3668-0001-p3509-0000_aligned.dtb
+[   0.8636 ] adding BCH for tos-mon-only_t194_aligned.img
+[   0.8731 ] adding BCH for eks_t194_aligned.img
+[   0.8754 ] adding BCH for adsp-fw_aligned.bin
+[   0.8769 ] adding BCH for camera-rtcpu-t194-rce_aligned.img
+[   0.8918 ] adding BCH for bpmp-2_t194_aligned.bin
+[   0.9108 ] adding BCH for tegra194-a02-bpmp-p3668-a00_lz4_aligned.dtb
+[   0.9399 ] adding BCH for spe_t194_aligned.bin
+[   0.9411 ] adding BCH for nvtboot_t194_aligned.bin
+[   0.9441 ] Header already present for preboot_c10_prod_cr_aligned.bin
+[   0.9501 ] Header already present for mce_c10_prod_cr_aligned.bin
+[   0.9508 ] adding BCH for mts_c10_prod_cr_aligned.bin
+[   0.9629 ] Header already present for warmboot_t194_prod_aligned.bin
+[   1.0585 ] adding BCH for xusb_sil_rel_fw_aligned
+[   1.0596 ] adding BCH for nvdisp-init_aligned.bin
+[   1.0718 ] adding BCH for tegra194-p3668-0001-p3509-0000_aligned.dtb
+[   1.1622 ] adding BCH for tos-mon-only_t194_aligned.img
+[   1.1719 ] adding BCH for eks_t194_aligned.img
+[   1.1745 ] adding BCH for adsp-fw_aligned.bin
+[   1.1762 ] adding BCH for camera-rtcpu-t194-rce_aligned.img
+[   1.1890 ] adding BCH for bpmp-2_t194_aligned.bin
+[   1.2072 ] adding BCH for tegra194-a02-bpmp-p3668-a00_lz4_aligned.dtb
+[   1.2373 ] Filling MB1 storage info
+[   1.2373 ] Parsing dev params for multi chains
+[   1.2374 ] Generating br-bct
+[   1.2405 ] Performing cfg overlay
+[   1.2405 ] ['tegra194-mb1-bct-memcfg-p3668-0001-a00.cfg', 'tegra194-memcfg-sw-override.cfg']
+[   1.2410 ] sw_memcfg_overlay.pl -c tegra194-mb1-bct-memcfg-p3668-0001-a00.cfg -s tegra194-memcfg-sw-override.cfg -o /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01.cfg
+[   1.2995 ] Updating dev and MSS params in BR BCT
+[   1.2995 ] tegrabct_v2 --dev_param tegra194-br-bct-qspi-l4t.cfg --sdram /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01.cfg --brbct br_bct.cfg --sfuse tegra194-mb1-soft-fuses-l4t.cfg --chip 0x19 0
+[   1.3675 ] Updating bl info
+[   1.3708 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updateblinfo flash.xml.bin
+[   1.3737 ] Generating br-bct
+[   1.3767 ] Performing cfg overlay
+[   1.3767 ] ['/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01.cfg']
+[   1.3767 ] Updating dev and MSS params in BR BCT
+[   1.3768 ] tegrabct_v2 --dev_param tegra194-br-bct_b-qspi-l4t.cfg --sdram /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01.cfg --brbct br_bct.cfg --sfuse tegra194-mb1-soft-fuses-l4t.cfg --chip 0x19 0
+[   1.4440 ] Updating bl info
+[   1.4470 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updateblinfo flash.xml.bin
+[   1.4503 ] Generating BCT backup image
+[   1.4504 ] dd if=/dev/zero of=bct_backup.img bs=1 count=32768
+[   1.4521 ] 32768+0 records in
+[   1.5201 ] 32768+0 records out
+[   1.5201 ] 32768 bytes (33 kB, 32 KiB) copied, 0.0672037 s, 488 kB/s
+[   1.5201 ] 
+[   1.5201 ] Concatenating BCT for chain A to bct_backup.img
+
+[   1.5202 ] dd if=br_bct_BR.bct of=bct_backup.img bs=1 seek=0 conv=notrunc
+[   1.5216 ] 2888+0 records in
+[   1.5267 ] 2888+0 records out
+[   1.5268 ] 2888 bytes (2.9 kB, 2.8 KiB) copied, 0.00458216 s, 630 kB/s
+[   1.5268 ] 
+[   1.5268 ] Concatenating BCT for chain B to bct_backup.img
+
+[   1.5268 ] dd if=br_bct_b_BR.bct of=bct_backup.img bs=1 seek=16384 conv=notrunc
+[   1.5279 ] 2888+0 records in
+[   1.5337 ] 2888+0 records out
+[   1.5337 ] 2888 bytes (2.9 kB, 2.8 KiB) copied, 0.00530806 s, 544 kB/s
+[   1.5337 ] 
+[   1.5338 ] Generating signatures
+[   1.5645 ] tegrasign_v3.py --key None --list images_list.xml --pubkeyhash pub_key.key
+[   1.5649 ] Assuming zero filled SBK key
+[   1.6709 ] Warning: pub_key.key is not found
+[   1.6433 ] Parsing dev params for multi chains
+[   1.6433 ] Generating br-bct
+[   1.6460 ] Performing cfg overlay
+[   1.6461 ] ['/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01.cfg']
+[   1.6461 ] Updating dev and MSS params in BR BCT
+[   1.6462 ] tegrabct_v2 --dev_param tegra194-br-bct-qspi-l4t.cfg --sdram /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01.cfg --brbct br_bct.cfg --sfuse tegra194-mb1-soft-fuses-l4t.cfg --chip 0x19 0
+[   1.7162 ] Updating bl info
+[   1.7190 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updateblinfo flash.xml.bin --updatesig images_list_signed.xml
+[   1.7224 ] Updating smd info
+[   1.7249 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 --updatesmdinfo flash.xml.bin
+[   1.7270 ] Updating Odmdata
+[   1.7301 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updatefields Odmdata =0xB8190000
+[   1.7324 ] Signing BCT
+[   1.7324 ] Get Signed section of bct
+[   1.7354 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --listbct bct_list.xml
+[   1.7678 ] tegrasign_v3.py --key None --list bct_list.xml --getmontgomeryvalues montgomery.bin --pubkeyhash pub_key.key
+[   1.7681 ] Assuming zero filled SBK key
+[   1.7710 ] Warning: pub_key.key is not found
+[   1.7433 ] Updating BCT with signature
+[   1.7462 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updatesig bct_list_signed.xml
+[   1.7484 ] Generating br-bct
+[   1.7513 ] Performing cfg overlay
+[   1.7513 ] ['/home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01.cfg']
+[   1.7513 ] Updating dev and MSS params in BR BCT
+[   1.7514 ] tegrabct_v2 --dev_param tegra194-br-bct_b-qspi-l4t.cfg --sdram /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01.cfg --brbct br_bct.cfg --sfuse tegra194-mb1-soft-fuses-l4t.cfg --chip 0x19 0
+[   1.8184 ] Updating bl info
+[   1.8218 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updateblinfo flash.xml.bin --updatesig images_list_signed.xml
+[   1.8251 ] Updating smd info
+[   1.8276 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 --updatesmdinfo flash.xml.bin
+[   1.8297 ] Updating Odmdata
+[   1.8322 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updatefields Odmdata =0xB8190000
+[   1.8342 ] Signing BCT
+[   1.8342 ] Get Signed section of bct
+[   1.8365 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --listbct bct_list.xml
+[   1.8683 ] tegrasign_v3.py --key None --list bct_list.xml --getmontgomeryvalues montgomery.bin --pubkeyhash pub_key.key
+[   1.8687 ] Assuming zero filled SBK key
+[   1.8715 ] Warning: pub_key.key is not found
+[   1.8438 ] Updating BCT with signature
+[   1.8469 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updatesig bct_list_signed.xml
+[   1.8497 ] Generating BCT backup image
+[   1.8498 ] dd if=/dev/zero of=bct_backup.img bs=1 count=32768
+[   1.8521 ] 32768+0 records in
+[   1.9217 ] 32768+0 records out
+[   1.9217 ] 32768 bytes (33 kB, 32 KiB) copied, 0.0688491 s, 476 kB/s
+[   1.9217 ] 
+[   1.9217 ] Concatenating BCT for chain A to bct_backup.img
+
+[   1.9217 ] dd if=br_bct_BR.bct of=bct_backup.img bs=1 seek=0 conv=notrunc
+[   1.9232 ] 2888+0 records in
+[   1.9279 ] 2888+0 records out
+[   1.9279 ] 2888 bytes (2.9 kB, 2.8 KiB) copied, 0.00421589 s, 685 kB/s
+[   1.9279 ] 
+[   1.9280 ] Concatenating BCT for chain B to bct_backup.img
+
+[   1.9280 ] dd if=br_bct_b_BR.bct of=bct_backup.img bs=1 seek=16384 conv=notrunc
+[   1.9291 ] 2888+0 records in
+[   1.9362 ] 2888+0 records out
+[   1.9362 ] 2888 bytes (2.9 kB, 2.8 KiB) copied, 0.00668011 s, 432 kB/s
+[   1.9362 ] 
+[   1.9362 ] Generating coldboot mb1-bct
+[   1.9391 ] tegrabct_v2 --chip 0x19 0 --mb1bct mb1_cold_boot_bct.cfg --sdram /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01.cfg --misc tegra194-mb1-bct-misc-l4t.cfg --scr tegra194-mb1-bct-scr-cbb-mini-p3668.cfg --pinmux tegra19x-mb1-pinmux-p3668-a01.cfg --pmc tegra19x-mb1-padvoltage-p3668-a01.cfg --pmic tegra194-mb1-bct-pmic-p3668-0001-a00.cfg --brcommand tegra194-mb1-bct-reset-p3668-0001-a00.cfg --prod tegra19x-mb1-prod-p3668-0001-a00.cfg --gpioint tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg --device tegra19x-mb1-bct-device-qspi-p3668.cfg
+[   1.9405 ] MB1-BCT version: 0x1
+
+[   1.9410 ] Parsing config file :tegra19x-mb1-pinmux-p3668-a01.cfg 
+[   1.9413 ] Added Platform Config 0 data with size :- 2496
+
+[   1.9430 ] Parsing config file :tegra194-mb1-bct-scr-cbb-mini-p3668.cfg 
+[   1.9435 ] Added Platform Config 1 data with size :- 19640
+
+[   1.9616 ] Parsing config file :tegra19x-mb1-padvoltage-p3668-a01.cfg 
+[   1.9619 ] Added Platform Config 2 data with size :- 24
+
+[   1.9622 ] Parsing config file :tegra194-mb1-bct-pmic-p3668-0001-a00.cfg 
+[   1.9625 ] Added Platform Config 4 data with size :- 348
+
+[   1.9628 ] Parsing config file :tegra194-mb1-bct-reset-p3668-0001-a00.cfg 
+[   1.9631 ] Added Platform Config 3 data with size :- 92
+
+[   1.9634 ] Parsing config file :tegra19x-mb1-prod-p3668-0001-a00.cfg 
+[   1.9637 ] Added Platform Config 5 data with size :- 140
+[   1.9637 ] 
+[   1.9637 ] Parsing config file :tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg 
+[   1.9637 ] Added Platform Config 7 data with size :- 392
+[   1.9637 ] 
+[   1.9637 ] Parsing config file :tegra19x-mb1-bct-device-qspi-p3668.cfg 
+[   1.9637 ] Added Platform Config 9 data with size :- 40
+[   1.9637 ] 
+[   1.9638 ] Updating mb1-bct with firmware information
+[   1.9661 ] tegrabct_v2 --chip 0x19 --mb1bct mb1_cold_boot_bct_MB1.bct --updatefwinfo flash.xml.bin
+[   1.9679 ] Updating mb1-bct with storage information
+[   1.9706 ] tegrabct_v2 --chip 0x19 --mb1bct mb1_cold_boot_bct_MB1.bct --updatestorageinfo flash.xml.bin
+[   1.9725 ] Updating mb1-bct with ratchet information
+[   1.9755 ] tegrabct_v2 --chip 0x19 --mb1bct mb1_cold_boot_bct_MB1.bct --minratchet tegra194-mb1-bct-ratchet-p3668.cfg
+[   1.9771 ] FwIndex: 1, MinRatchetLevel: 0
+[   1.9776 ] FwIndex: 2, MinRatchetLevel: 0
+[   1.9776 ] FwIndex: 3, MinRatchetLevel: 0
+[   1.9777 ] FwIndex: 4, MinRatchetLevel: 0
+[   1.9777 ] FwIndex: 5, MinRatchetLevel: 0
+[   1.9777 ] FwIndex: 6, MinRatchetLevel: 0
+[   1.9777 ] FwIndex: 7, MinRatchetLevel: 0
+[   1.9777 ] FwIndex: 11, MinRatchetLevel: 0
+[   1.9777 ] FwIndex: 12, MinRatchetLevel: 0
+[   1.9777 ] FwIndex: 13, MinRatchetLevel: 0
+[   1.9777 ] FwIndex: 14, MinRatchetLevel: 0
+[   1.9777 ] FwIndex: 15, MinRatchetLevel: 0
+[   1.9777 ] FwIndex: 16, MinRatchetLevel: 0
+[   1.9777 ] FwIndex: 17, MinRatchetLevel: 0
+[   1.9777 ] FwIndex: 18, MinRatchetLevel: 0
+[   1.9777 ] FwIndex: 19, MinRatchetLevel: 0
+[   1.9777 ] FwIndex: 30, MinRatchetLevel: 0
+[   1.9778 ] FwIndex: 31, MinRatchetLevel: 0
+[   1.9778 ] 
+[   1.9808 ] tegrahost_v2 --chip 0x19 --align mb1_cold_boot_bct_MB1_aligned.bct
+[   1.9852 ] tegrahost_v2 --chip 0x19 0 --magicid MBCT --ratchet_blob ratchet_blob.bin --appendsigheader mb1_cold_boot_bct_MB1_aligned.bct zerosbk
+[   1.9867 ] adding BCH for mb1_cold_boot_bct_MB1_aligned.bct
+[   2.0191 ] tegrasign_v3.py --key None --list mb1_cold_boot_bct_MB1_aligned_sigheader.bct_list.xml --pubkeyhash pub_key.key
+[   2.0195 ] Assuming zero filled SBK key
+[   2.0225 ] Warning: pub_key.key is not found
+[   1.9978 ] tegrahost_v2 --chip 0x19 0 --updatesigheader mb1_cold_boot_bct_MB1_aligned_sigheader.bct.encrypt mb1_cold_boot_bct_MB1_aligned_sigheader.bct.hash zerosbk
+[   2.0005 ] Generating recovery mb1-bct
+[   2.0032 ] tegrabct_v2 --chip 0x19 0 --mb1bct mb1_bct.cfg --sdram /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01.cfg --misc tegra194-mb1-bct-misc-flash.cfg --scr tegra194-mb1-bct-scr-cbb-mini-p3668.cfg --pinmux tegra19x-mb1-pinmux-p3668-a01.cfg --pmc tegra19x-mb1-padvoltage-p3668-a01.cfg --pmic tegra194-mb1-bct-pmic-p3668-0001-a00.cfg --brcommand tegra194-mb1-bct-reset-p3668-0001-a00.cfg --prod tegra19x-mb1-prod-p3668-0001-a00.cfg --gpioint tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg --device tegra19x-mb1-bct-device-qspi-p3668.cfg
+[   2.0046 ] MB1-BCT version: 0x1
+
+[   2.0050 ] Parsing config file :tegra19x-mb1-pinmux-p3668-a01.cfg 
+[   2.0054 ] Added Platform Config 0 data with size :- 2496
+
+[   2.0074 ] Parsing config file :tegra194-mb1-bct-scr-cbb-mini-p3668.cfg 
+[   2.0078 ] Added Platform Config 1 data with size :- 19640
+
+[   2.0278 ] Parsing config file :tegra19x-mb1-padvoltage-p3668-a01.cfg 
+[   2.0282 ] Added Platform Config 2 data with size :- 24
+
+[   2.0285 ] Parsing config file :tegra194-mb1-bct-pmic-p3668-0001-a00.cfg 
+[   2.0288 ] Added Platform Config 4 data with size :- 348
+
+[   2.0291 ] Parsing config file :tegra194-mb1-bct-reset-p3668-0001-a00.cfg 
+[   2.0294 ] Added Platform Config 3 data with size :- 92
+[   2.0296 ] 
+[   2.0296 ] Parsing config file :tegra19x-mb1-prod-p3668-0001-a00.cfg 
+[   2.0296 ] Added Platform Config 5 data with size :- 140
+[   2.0296 ] 
+[   2.0296 ] Parsing config file :tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg 
+[   2.0296 ] Added Platform Config 7 data with size :- 392
+[   2.0296 ] 
+[   2.0296 ] Parsing config file :tegra19x-mb1-bct-device-qspi-p3668.cfg 
+[   2.0296 ] Added Platform Config 9 data with size :- 40
+[   2.0296 ] 
+[   2.0297 ] Updating mb1-bct with firmware information
+[   2.0321 ] tegrabct_v2 --chip 0x19 --mb1bct mb1_bct_MB1.bct --recov --updatefwinfo flash.xml.bin
+[   2.0341 ] Updating mb1-bct with storage information
+[   2.0368 ] tegrabct_v2 --chip 0x19 --mb1bct mb1_bct_MB1.bct --updatestorageinfo flash.xml.bin
+[   2.0386 ] Updating mb1-bct with ratchet information
+[   2.0414 ] tegrabct_v2 --chip 0x19 --mb1bct mb1_bct_MB1.bct --minratchet tegra194-mb1-bct-ratchet-p3668.cfg
+[   2.0430 ] FwIndex: 1, MinRatchetLevel: 0
+[   2.0436 ] FwIndex: 2, MinRatchetLevel: 0
+[   2.0436 ] FwIndex: 3, MinRatchetLevel: 0
+[   2.0436 ] FwIndex: 4, MinRatchetLevel: 0
+[   2.0436 ] FwIndex: 5, MinRatchetLevel: 0
+[   2.0436 ] FwIndex: 6, MinRatchetLevel: 0
+[   2.0436 ] FwIndex: 7, MinRatchetLevel: 0
+[   2.0436 ] FwIndex: 11, MinRatchetLevel: 0
+[   2.0436 ] FwIndex: 12, MinRatchetLevel: 0
+[   2.0436 ] FwIndex: 13, MinRatchetLevel: 0
+[   2.0436 ] FwIndex: 14, MinRatchetLevel: 0
+[   2.0436 ] FwIndex: 15, MinRatchetLevel: 0
+[   2.0436 ] FwIndex: 16, MinRatchetLevel: 0
+[   2.0436 ] FwIndex: 17, MinRatchetLevel: 0
+[   2.0436 ] FwIndex: 18, MinRatchetLevel: 0
+[   2.0437 ] FwIndex: 19, MinRatchetLevel: 0
+[   2.0437 ] FwIndex: 30, MinRatchetLevel: 0
+[   2.0437 ] FwIndex: 31, MinRatchetLevel: 0
+[   2.0437 ] 
+[   2.0469 ] tegrahost_v2 --chip 0x19 --align mb1_bct_MB1_aligned.bct
+[   2.0514 ] tegrahost_v2 --chip 0x19 0 --magicid MBCT --ratchet_blob ratchet_blob.bin --appendsigheader mb1_bct_MB1_aligned.bct zerosbk
+[   2.0529 ] adding BCH for mb1_bct_MB1_aligned.bct
+[   2.0854 ] tegrasign_v3.py --key None --list mb1_bct_MB1_aligned_sigheader.bct_list.xml --pubkeyhash pub_key.key
+[   2.0861 ] Assuming zero filled SBK key
+[   2.0892 ] Warning: pub_key.key is not found
+[   2.0645 ] tegrahost_v2 --chip 0x19 0 --updatesigheader mb1_bct_MB1_aligned_sigheader.bct.encrypt mb1_bct_MB1_aligned_sigheader.bct.hash zerosbk
+[   2.0671 ] Generating coldboot mem-bct
+[   2.0697 ] tegrabct_v2 --chip 0x19 0 --sdram /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01.cfg --membct /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01_1.bct /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01_2.bct /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01_3.bct /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01_4.bct
+[   2.0714 ] Packing sdram param for instance[0]
+[   2.1365 ] Packing sdram param for instance[1]
+[   2.1367 ] Packing sdram param for instance[2]
+[   2.1368 ] Packing sdram param for instance[3]
+[   2.1371 ] Packing sdram param for instance[4]
+[   2.1371 ] Packing sdram param for instance[5]
+[   2.1371 ] Packing sdram param for instance[6]
+[   2.1371 ] Packing sdram param for instance[7]
+[   2.1371 ] Packing sdram param for instance[8]
+[   2.1371 ] Packing sdram param for instance[9]
+[   2.1371 ] Packing sdram param for instance[10]
+[   2.1371 ] Packing sdram param for instance[11]
+[   2.1371 ] Packing sdram param for instance[12]
+[   2.1371 ] Packing sdram param for instance[13]
+[   2.1371 ] Packing sdram param for instance[14]
+[   2.1371 ] Packing sdram param for instance[15]
+[   2.1371 ] 
+[   2.1372 ] Getting sector size from pt
+[   2.1398 ] tegraparser_v2 --getsectorsize flash.xml.bin sector_info.bin
+[   2.1415 ] BlockSize read from layout is 200
+
+[   2.1443 ] tegrahost_v2 --chip 0x19 0 --blocksize 512 --magicid MEMB --addsigheader_multi /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01_1.bct /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01_2.bct /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01_3.bct /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01_4.bct
+[   2.1458 ] adding BCH for /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01_1.bct
+[   2.1528 ] tegrahost_v2 --chip 0x19 --align mem_coldboot_aligned.bct
+[   2.1572 ] tegrahost_v2 --chip 0x19 0 --magicid MEMB --ratchet_blob ratchet_blob.bin --appendsigheader mem_coldboot_aligned.bct zerosbk
+[   2.1593 ] Header already present for mem_coldboot_aligned.bct
+[   2.1911 ] tegrasign_v3.py --key None --list mem_coldboot_aligned_sigheader.bct_list.xml --pubkeyhash pub_key.key
+[   2.1914 ] Assuming zero filled SBK key
+[   2.1945 ] Warning: pub_key.key is not found
+[   2.1697 ] tegrahost_v2 --chip 0x19 0 --updatesigheader mem_coldboot_aligned_sigheader.bct.encrypt mem_coldboot_aligned_sigheader.bct.hash zerosbk
+[   2.1724 ] Generating recovery mem-bct
+[   2.1752 ] tegrabct_v2 --chip 0x19 0 --sdram /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01.cfg --membct /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01_1.bct /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01_2.bct /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01_3.bct /home/ptrk/Downloads/jetpack-5-1/Linux_for_Tegra/bootloader/74257/tmptej295x01_4.bct
+[   2.1767 ] Packing sdram param for instance[0]
+[   2.2465 ] Packing sdram param for instance[1]
+[   2.2467 ] Packing sdram param for instance[2]
+[   2.2468 ] Packing sdram param for instance[3]
+[   2.2470 ] Packing sdram param for instance[4]
+[   2.2471 ] Packing sdram param for instance[5]
+[   2.2474 ] Packing sdram param for instance[6]
+[   2.2474 ] Packing sdram param for instance[7]
+[   2.2474 ] Packing sdram param for instance[8]
+[   2.2474 ] Packing sdram param for instance[9]
+[   2.2474 ] Packing sdram param for instance[10]
+[   2.2474 ] Packing sdram param for instance[11]
+[   2.2474 ] Packing sdram param for instance[12]
+[   2.2474 ] Packing sdram param for instance[13]
+[   2.2474 ] Packing sdram param for instance[14]
+[   2.2474 ] Packing sdram param for instance[15]
+[   2.2474 ] 
+[   2.2504 ] tegrahost_v2 --chip 0x19 --align mem_rcm_aligned.bct
+[   2.2541 ] tegrahost_v2 --chip 0x19 0 --magicid MEMB --ratchet_blob ratchet_blob.bin --appendsigheader mem_rcm_aligned.bct zerosbk
+[   2.2555 ] adding BCH for mem_rcm_aligned.bct
+[   2.2875 ] tegrasign_v3.py --key None --list mem_rcm_aligned_sigheader.bct_list.xml --pubkeyhash pub_key.key
+[   2.2878 ] Assuming zero filled SBK key
+[   2.2903 ] Warning: pub_key.key is not found
+[   2.2654 ] tegrahost_v2 --chip 0x19 0 --updatesigheader mem_rcm_aligned_sigheader.bct.encrypt mem_rcm_aligned_sigheader.bct.hash zerosbk
+[   2.2686 ] Copying signatures
+[   2.2711 ] tegrahost_v2 --chip 0x19 0 --partitionlayout flash.xml.bin --updatesig images_list_signed.xml
+[   2.5751 ] Boot Rom communication
+[   2.5783 ] tegrarcm_v2 --chip 0x19 0 --rcm rcm_list_signed.xml
+[   2.5799 ] BR_CID: 0x88021911644571432400000016050140
+[   3.1557 ] RCM version 0X190001
+[   3.5272 ] Boot Rom communication completed
+[   5.5489 ] tegrarcm_v2 --isapplet
+[   5.5515 ] Applet version 01.00.0000
+[   6.7251 ] Sending BCTs
+[   6.7304 ] tegrarcm_v2 --download bct_bootrom br_bct_BR.bct --download bct_mb1 mb1_bct_MB1_sigheader.bct.encrypt --download bct_mem mem_rcm_sigheader.bct.encrypt
+[   6.7331 ] Applet version 01.00.0000
+[   7.4801 ] Sending bct_bootrom
+[   7.4805 ] [................................................] 100%
+[   7.4817 ] Sending bct_mb1
+[   7.4862 ] [................................................] 100%
+[   7.4898 ] Sending bct_mem
+[   7.5379 ] [................................................] 100%
+[   7.5741 ] Generating blob
+[   7.5797 ] tegrahost_v2 --chip 0x19 --align blob_nvtboot_recovery_cpu_t194_aligned.bin
+[   7.5852 ] tegrahost_v2 --chip 0x19 0 --magicid CPBL --ratchet_blob ratchet_blob.bin --appendsigheader blob_nvtboot_recovery_cpu_t194_aligned.bin zerosbk
+[   7.5867 ] adding BCH for blob_nvtboot_recovery_cpu_t194_aligned.bin
+[   7.6270 ] tegrasign_v3.py --key None --list blob_nvtboot_recovery_cpu_t194_aligned_sigheader.bin_list.xml --pubkeyhash pub_key.key
+[   7.6275 ] Assuming zero filled SBK key
+[   7.6306 ] Warning: pub_key.key is not found
+[   7.6054 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_nvtboot_recovery_cpu_t194_aligned_sigheader.bin.encrypt blob_nvtboot_recovery_cpu_t194_aligned_sigheader.bin.hash zerosbk
+[   7.6159 ] tegrahost_v2 --chip 0x19 --align blob_nvtboot_recovery_t194_aligned.bin
+[   7.6207 ] tegrahost_v2 --chip 0x19 0 --magicid MB2B --ratchet_blob ratchet_blob.bin --appendsigheader blob_nvtboot_recovery_t194_aligned.bin zerosbk
+[   7.6224 ] adding BCH for blob_nvtboot_recovery_t194_aligned.bin
+[   7.6617 ] tegrasign_v3.py --key None --list blob_nvtboot_recovery_t194_aligned_sigheader.bin_list.xml --pubkeyhash pub_key.key
+[   7.6620 ] Assuming zero filled SBK key
+[   7.6648 ] Warning: pub_key.key is not found
+[   7.6401 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_nvtboot_recovery_t194_aligned_sigheader.bin.encrypt blob_nvtboot_recovery_t194_aligned_sigheader.bin.hash zerosbk
+[   7.6494 ] tegrahost_v2 --chip 0x19 --align blob_preboot_c10_prod_cr_aligned.bin
+[   7.6538 ] tegrahost_v2 --chip 0x19 0 --magicid MTSP --appendsigheader blob_preboot_c10_prod_cr_aligned.bin zerosbk
+[   7.6552 ] Header already present for blob_preboot_c10_prod_cr_aligned.bin
+[   7.6876 ] tegrasign_v3.py --key None --list blob_preboot_c10_prod_cr_aligned_sigheader.bin_list.xml --pubkeyhash pub_key.key
+[   7.6879 ] Assuming zero filled SBK key
+[   7.6912 ] Warning: pub_key.key is not found
+[   7.6666 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_preboot_c10_prod_cr_aligned_sigheader.bin.encrypt blob_preboot_c10_prod_cr_aligned_sigheader.bin.hash zerosbk
+[   7.6724 ] tegrahost_v2 --chip 0x19 --align blob_mce_c10_prod_cr_aligned.bin
+[   7.6771 ] tegrahost_v2 --chip 0x19 0 --magicid MTSM --appendsigheader blob_mce_c10_prod_cr_aligned.bin zerosbk
+[   7.6787 ] Header already present for blob_mce_c10_prod_cr_aligned.bin
+[   7.7129 ] tegrasign_v3.py --key None --list blob_mce_c10_prod_cr_aligned_sigheader.bin_list.xml --pubkeyhash pub_key.key
+[   7.7132 ] Assuming zero filled SBK key
+[   7.7161 ] Warning: pub_key.key is not found
+[   7.6911 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_mce_c10_prod_cr_aligned_sigheader.bin.encrypt blob_mce_c10_prod_cr_aligned_sigheader.bin.hash zerosbk
+[   7.7021 ] tegrahost_v2 --chip 0x19 --align blob_mts_c10_prod_cr_aligned.bin
+[   7.7068 ] tegrahost_v2 --chip 0x19 0 --magicid MTSB --appendsigheader blob_mts_c10_prod_cr_aligned.bin zerosbk
+[   7.7083 ] adding BCH for blob_mts_c10_prod_cr_aligned.bin
+[   7.8413 ] tegrasign_v3.py --key None --list blob_mts_c10_prod_cr_aligned_sigheader.bin_list.xml --pubkeyhash pub_key.key
+[   7.8418 ] Assuming zero filled SBK key
+[   7.8526 ] Warning: pub_key.key is not found
+[   7.8276 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_mts_c10_prod_cr_aligned_sigheader.bin.encrypt blob_mts_c10_prod_cr_aligned_sigheader.bin.hash zerosbk
+[   7.8902 ] tegrahost_v2 --chip 0x19 --align blob_bpmp-2_t194_aligned.bin
+[   7.8948 ] tegrahost_v2 --chip 0x19 0 --magicid BPMF --ratchet_blob ratchet_blob.bin --appendsigheader blob_bpmp-2_t194_aligned.bin zerosbk
+[   7.8965 ] adding BCH for blob_bpmp-2_t194_aligned.bin
+[   7.9611 ] tegrasign_v3.py --key None --list blob_bpmp-2_t194_aligned_sigheader.bin_list.xml --pubkeyhash pub_key.key
+[   7.9614 ] Assuming zero filled SBK key
+[   7.9666 ] Warning: pub_key.key is not found
+[   7.9422 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_bpmp-2_t194_aligned_sigheader.bin.encrypt blob_bpmp-2_t194_aligned_sigheader.bin.hash zerosbk
+[   7.9665 ] tegrahost_v2 --chip 0x19 --align blob_tegra194-a02-bpmp-p3668-a00_lz4_aligned.dtb
+[   7.9705 ] tegrahost_v2 --chip 0x19 0 --magicid BPMD --ratchet_blob ratchet_blob.bin --appendsigheader blob_tegra194-a02-bpmp-p3668-a00_lz4_aligned.dtb zerosbk
+[   7.9720 ] adding BCH for blob_tegra194-a02-bpmp-p3668-a00_lz4_aligned.dtb
+[   8.0044 ] tegrasign_v3.py --key None --list blob_tegra194-a02-bpmp-p3668-a00_lz4_aligned_sigheader.dtb_list.xml --pubkeyhash pub_key.key
+[   8.0048 ] Assuming zero filled SBK key
+[   8.0077 ] Warning: pub_key.key is not found
+[   7.9830 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_tegra194-a02-bpmp-p3668-a00_lz4_aligned_sigheader.dtb.encrypt blob_tegra194-a02-bpmp-p3668-a00_lz4_aligned_sigheader.dtb.hash zerosbk
+[   7.9887 ] tegrahost_v2 --chip 0x19 --align blob_spe_t194_aligned.bin
+[   7.9931 ] tegrahost_v2 --chip 0x19 0 --magicid SPEF --ratchet_blob ratchet_blob.bin --appendsigheader blob_spe_t194_aligned.bin zerosbk
+[   7.9948 ] adding BCH for blob_spe_t194_aligned.bin
+[   8.0298 ] tegrasign_v3.py --key None --list blob_spe_t194_aligned_sigheader.bin_list.xml --pubkeyhash pub_key.key
+[   8.0302 ] Assuming zero filled SBK key
+[   8.0331 ] Warning: pub_key.key is not found
+[   8.0082 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_spe_t194_aligned_sigheader.bin.encrypt blob_spe_t194_aligned_sigheader.bin.hash zerosbk
+[   8.0151 ] tegrahost_v2 --chip 0x19 --align blob_tos-mon-only_t194_aligned.img
+[   8.0221 ] tegrahost_v2 --chip 0x19 0 --magicid TOSB --ratchet_blob ratchet_blob.bin --appendsigheader blob_tos-mon-only_t194_aligned.img zerosbk
+[   8.0237 ] adding BCH for blob_tos-mon-only_t194_aligned.img
+[   8.0583 ] tegrasign_v3.py --key None --list blob_tos-mon-only_t194_aligned_sigheader.img_list.xml --pubkeyhash pub_key.key
+[   8.0587 ] Assuming zero filled SBK key
+[   8.0615 ] Warning: pub_key.key is not found
+[   8.0367 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_tos-mon-only_t194_aligned_sigheader.img.encrypt blob_tos-mon-only_t194_aligned_sigheader.img.hash zerosbk
+[   8.0437 ] tegrahost_v2 --chip 0x19 --align blob_eks_t194_aligned.img
+[   8.0484 ] tegrahost_v2 --chip 0x19 0 --magicid EKSB --ratchet_blob ratchet_blob.bin --appendsigheader blob_eks_t194_aligned.img zerosbk
+[   8.0501 ] adding BCH for blob_eks_t194_aligned.img
+[   8.0814 ] tegrasign_v3.py --key None --list blob_eks_t194_aligned_sigheader.img_list.xml --pubkeyhash pub_key.key
+[   8.0818 ] Assuming zero filled SBK key
+[   8.0847 ] Warning: pub_key.key is not found
+[   8.0602 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_eks_t194_aligned_sigheader.img.encrypt blob_eks_t194_aligned_sigheader.img.hash zerosbk
+[   8.0653 ] tegrahost_v2 --chip 0x19 --align blob_tegra194-p3668-0001-p3509-0000_aligned.dtb
+[   8.0696 ] tegrahost_v2 --chip 0x19 0 --magicid CDTB --ratchet_blob ratchet_blob.bin --appendsigheader blob_tegra194-p3668-0001-p3509-0000_aligned.dtb zerosbk
+[   8.0712 ] adding BCH for blob_tegra194-p3668-0001-p3509-0000_aligned.dtb
+[   8.1148 ] tegrasign_v3.py --key None --list blob_tegra194-p3668-0001-p3509-0000_aligned_sigheader.dtb_list.xml --pubkeyhash pub_key.key
+[   8.1151 ] Assuming zero filled SBK key
+[   8.1184 ] Warning: pub_key.key is not found
+[   8.0934 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_tegra194-p3668-0001-p3509-0000_aligned_sigheader.dtb.encrypt blob_tegra194-p3668-0001-p3509-0000_aligned_sigheader.dtb.hash zerosbk
+[   8.1061 ] tegrahost_v2 --chip 0x19 --generateblob blob.xml blob.bin
+[   8.1076 ] number of images in blob are 11
+[   8.1079 ] blobsize is 5600728
+[   8.1080 ] Added binary blob_nvtboot_recovery_cpu_t194_sigheader.bin.encrypt of size 233040
+[   8.1114 ] Added binary blob_nvtboot_recovery_t194_sigheader.bin.encrypt of size 206016
+[   8.1121 ] Added binary blob_preboot_c10_prod_cr_sigheader.bin.encrypt of size 24016
+[   8.1128 ] Added binary blob_mce_c10_prod_cr_sigheader.bin.encrypt of size 145184
+[   8.1135 ] Added binary blob_mts_c10_prod_cr_sigheader.bin.encrypt of size 3430416
+[   8.1163 ] Added binary blob_bpmp-2_t194_sigheader.bin.encrypt of size 1007392
+[   8.1182 ] Added binary blob_tegra194-a02-bpmp-p3668-a00_lz4_sigheader.dtb.encrypt of size 36176
+[   8.1188 ] Added binary blob_spe_t194_sigheader.bin.encrypt of size 95232
+[   8.1192 ] Added binary blob_tos-mon-only_t194_sigheader.img.encrypt of size 79888
+[   8.1197 ] Added binary blob_eks_t194_sigheader.img.encrypt of size 5136
+[   8.1201 ] Added binary blob_tegra194-p3668-0001-p3509-0000_sigheader.dtb.encrypt of size 338048
+[   8.1231 ] Sending bootloader and pre-requisite binaries
+[   8.1266 ] tegrarcm_v2 --download blob blob.bin
+[   8.1283 ] Applet version 01.00.0000
+[   9.3009 ] Sending blob
+[   9.3011 ] [................................................] 100%
+[  10.0867 ] tegrarcm_v2 --boot recovery
+[  10.0885 ] Applet version 01.00.0000
+[  12.2685 ] tegrarcm_v2 --isapplet
+[ 1022.1329 ] tegrarcm_v2 --ismb2
+[ 2037.9416 ] tegradevflash_v2 --iscpubl
+[ 2037.9452 ] CPU Bootloader is not running on device.
+[ 3054.7497 ] tegrarcm_v2 --isapplet
+[ 4069.5556 ] tegrarcm_v2 --ismb2
+[ 5085.3636 ] tegradevflash_v2 --iscpubl
+[ 5085.3669 ] CPU Bootloader is not running on device.
+[ 6102.1733 ] tegrarcm_v2 --isapplet
