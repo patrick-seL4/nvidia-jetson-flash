@@ -28,7 +28,7 @@ ifeq ("$(wildcard $(JETSON_OUTPUT_DIR)/rootfs/bin)","")
 	# Extract the root file system (e.g. ~/Downloads/Tegra_Linux_Sample-Root-Filesystem_R35.2.1_aarch64.tbz2)
 	sudo tar xvf $(FS_PATH) --directory=$(JETSON_OUTPUT_DIR)/rootfs
 endif
-ifeq ("$(wildcard $(JETSON_OUTPUT_DIR)/rootfs/bin/extlinux)","")
+ifeq ("$(wildcard $(JETSON_OUTPUT_DIR)/rootfs/boot/extlinux)","")
 	# Apply binaries
 	cd $(JETSON_OUTPUT_DIR) && \
 		sudo ./apply_binaries.sh
