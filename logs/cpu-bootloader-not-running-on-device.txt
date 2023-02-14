@@ -1,0 +1,896 @@
+sudo ./flash.sh jetson-xavier-nx-devkit-emmc mmcblk0p1                                    ✔  at 13:08:01 
+[sudo] password for ptrk: 
+Sorry, try again.
+[sudo] password for ptrk: 
+Sorry, try again.
+[sudo] password for ptrk: 
+###############################################################################
+# L4T BSP Information:
+# R35 , REVISION: 1.0
+###############################################################################
+# Target Board Information:
+# Name: jetson-xavier-nx-devkit-emmc, Board Family: t186ref, SoC: Tegra 194, 
+# OpMode: production, Boot Authentication: NS, 
+# Disk encryption: disabled ,
+###############################################################################
+copying soft_fuses(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-soft-fuses-l4t.cfg)... done.
+./tegraflash.py --chip 0x19 --applet "/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/mb1_t194_prod.bin" --skipuid --soft_fuses tegra194-mb1-soft-fuses-l4t.cfg --bins "mb2_applet nvtboot_applet_t194.bin" --cmd "dump eeprom boardinfo cvm.bin;reboot recovery" 
+Welcome to Tegra Flash
+version 1.0.0
+Type ? or help for help and q or quit to exit
+Use ! to execute system commands
+ 
+[   0.0079 ] Generating RCM messages
+[   0.0100 ] tegrahost_v2 --chip 0x19 0 --magicid MB1B --appendsigheader /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/mb1_t194_prod.bin zerosbk
+[   0.0116 ] Header already present for /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/mb1_t194_prod.bin
+[   0.0223 ] tegrasign_v3.py --key None --getmode mode.txt
+[   0.0227 ] Assuming zero filled SBK key
+[   0.0255 ] tegrasign_v3.py --file /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/mb1_t194_prod_sigheader.bin --key None --length 1136 --offset 2960 --pubkeyhash pub_key.key
+[   0.0258 ] Assuming zero filled SBK key
+[   0.0337 ] Warning: pub_key.key is not found
+[   0.0345 ] tegrahost_v2 --chip 0x19 0 --updatesigheader /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/mb1_t194_prod_sigheader.bin /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/mb1_t194_prod_sigheader.hash zerosbk
+[   0.0471 ] tegrabct_v2 --chip 0x19 0 --sfuse tegra194-mb1-soft-fuses-l4t.cfg.pdf sfuse.bin
+[   0.0527 ] tegrarcm_v2 --listrcm rcm_list.xml --chip 0x19 0 --sfuses sfuse.bin --download rcm /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/mb1_t194_prod_sigheader.bin 0 0
+[   0.0539 ] RCM 0 is saved as rcm_0.rcm
+[   0.0604 ] RCM 1 is saved as rcm_1.rcm
+[   0.0608 ] RCM 2 is saved as rcm_2.rcm
+[   0.0608 ] List of rcm files are saved in rcm_list.xml
+[   0.0609 ] 
+[   0.0609 ] Signing RCM messages
+[   0.0652 ] tegrasign_v3.py --key None --list rcm_list.xml --getmontgomeryvalues montgomery.bin --pubkeyhash pub_key.key
+[   0.0655 ] Assuming zero filled SBK key
+[   0.0725 ] Warning: pub_key.key is not found
+[   0.0709 ] Copying signature to RCM mesages
+[   0.0737 ] tegrarcm_v2 --chip 0x19 0 --updatesig rcm_list_signed.xml
+[   0.0756 ] Boot Rom communication
+[   0.0777 ] tegrarcm_v2 --chip 0x19 0 --rcm rcm_list_signed.xml --skipuid
+[   0.0789 ] RCM version 0X190001
+[   0.6277 ] Boot Rom communication completed
+[   2.6509 ] tegrarcm_v2 --isapplet
+[   2.6536 ] Applet version 01.00.0000
+[   3.7680 ] tegrarcm_v2 --ismb2
+[   3.8972 ] tegrahost_v2 --chip 0x19 --align nvtboot_applet_t194_aligned.bin
+[   3.9031 ] tegrahost_v2 --chip 0x19 0 --magicid PLDT --appendsigheader nvtboot_applet_t194_aligned.bin zerosbk
+[   3.9051 ] adding BCH for nvtboot_applet_t194_aligned.bin
+[   3.9145 ] tegrasign_v3.py --key None --list nvtboot_applet_t194_aligned_sigheader.bin_list.xml --pubkeyhash pub_key.key
+[   3.9148 ] Assuming zero filled SBK key
+[   3.9173 ] Warning: pub_key.key is not found
+[   3.9180 ] tegrahost_v2 --chip 0x19 0 --updatesigheader nvtboot_applet_t194_aligned_sigheader.bin.encrypt nvtboot_applet_t194_aligned_sigheader.bin.hash zerosbk
+[   3.9258 ] tegrarcm_v2 --download mb2 nvtboot_applet_t194_sigheader.bin.encrypt
+[   3.9272 ] Applet version 01.00.0000
+[   5.4615 ] Sending mb2
+[   5.4618 ] [................................................] 100%
+[   5.4824 ] tegrarcm_v2 --boot recovery
+[   5.4840 ] Applet version 01.00.0000
+[   6.6023 ] tegrarcm_v2 --isapplet
+[   7.7218 ] tegrarcm_v2 --ismb2
+[   7.7245 ] MB2 Applet version 01.00.0000
+[   8.8572 ] tegrarcm_v2 --ismb2
+[   8.8593 ] MB2 Applet version 01.00.0000
+[   9.9938 ] Retrieving board information
+[   9.9980 ] tegrarcm_v2 --oem platformdetails chip chip_info.bin
+[  10.0007 ] MB2 Applet version 01.00.0000
+[  11.1157 ] Saved platform info in chip_info.bin
+[  11.1205 ] Chip minor revision: 2
+[  11.1205 ] Bootrom revision: 0xf
+[  11.1206 ] Ram code: 0x1
+[  11.1206 ] Chip sku: 0xde
+[  11.1206 ] Chip Sample: non es
+[  11.1206 ] 
+[  11.1215 ] Retrieving EEPROM data
+[  11.1216 ] tegrarcm_v2 --oem platformdetails eeprom cvm /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/cvm.bin
+[  11.1243 ] MB2 Applet version 01.00.0000
+[  11.2352 ] Saved platform info in /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/cvm.bin
+[  11.2759 ] Rebooting to recovery mode
+[  11.2806 ] tegrarcm_v2 --ismb2
+[  11.2832 ] MB2 Applet version 01.00.0000
+[  11.7974 ] Rebooting to recovery mode
+[  11.8013 ] tegrarcm_v2 --reboot recovery
+[  11.8034 ] MB2 Applet version 01.00.0000
+Board ID(3668) version(301) sku(0001) revision(G.0)
+lz4c installed at /usr/bin/lz4c
+Compressing /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/tegra194-a02-bpmp-p3668-a00.dtb ...
+Copy /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/kernel/dtb/tegra194-p3668-0001-p3509-0000.dtb to /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/kernel/dtb/tegra194-p3668-0001-p3509-0000.dtb.rec
+NVDISP+UEFI in bootloader/nvdisp-init.bin ..
+copying bctfile(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-memcfg-p3668-0001-a00.cfg)... done.
+copying bctfile1(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-memcfg-sw-override.cfg)... done.
+copying minratchet_config(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-ratchet-p3668.cfg)... done.
+copying device_config(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra19x-mb1-bct-device-qspi-p3668.cfg)... done.
+copying misc_cold_boot_config(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-misc-l4t.cfg)... done.
+copying misc_config(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-misc-flash.cfg)... done.
+copying pinmux_config(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra19x-mb1-pinmux-p3668-a01.cfg)... done.
+copying gpioint_config(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg)... done.
+copying pmic_config(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-pmic-p3668-0001-a00.cfg)... done.
+copying pmc_config(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra19x-mb1-padvoltage-p3668-a01.cfg)... done.
+copying prod_config(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra19x-mb1-prod-p3668-0001-a00.cfg)... done.
+copying scr_config(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-scr-cbb-mini-p3668.cfg)... done.
+copying scr_cold_boot_config(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-scr-cbb-mini-p3668.cfg)... done.
+copying bootrom_config(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-bct-reset-p3668-0001-a00.cfg)... done.
+copying dev_params(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-br-bct-qspi-l4t.cfg)... done.
+copying dev_params_b(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-br-bct_b-qspi-l4t.cfg)... done.
+Existing bootloader(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/nvtboot_cpu_t194.bin) reused.
+copying initrd(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/l4t_initrd.img)... done.
+Making Boot image... done.
+/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/tegraflash.py --chip 0x19 --key  --minratchet_config tegra194-mb1-bct-ratchet-p3668.cfg --cmd sign boot.img kernel
+Welcome to Tegra Flash
+version 1.0.0
+Type ? or help for help and q or quit to exit
+Use ! to execute system commands
+ 
+[   0.0013 ] Generating signature
+[   0.0044 ] tegrasign_v3.py --key  --getmode mode.txt
+[   0.0048 ] Assuming zero filled SBK key : not reading 
+[   0.0042 ] Generating ratchet blob
+[   0.0064 ] tegrabct_v2 --chip 0x19 0 --ratchet_blob ratchet_blob.bin --minratchet tegra194-mb1-bct-ratchet-p3668.cfg
+[   0.0075 ] FwIndex: 1, MinRatchetLevel: 0
+[   0.0086 ] FwIndex: 2, MinRatchetLevel: 0
+[   0.0086 ] FwIndex: 3, MinRatchetLevel: 0
+[   0.0086 ] FwIndex: 4, MinRatchetLevel: 0
+[   0.0086 ] FwIndex: 5, MinRatchetLevel: 0
+[   0.0086 ] FwIndex: 6, MinRatchetLevel: 0
+[   0.0086 ] FwIndex: 7, MinRatchetLevel: 0
+[   0.0086 ] FwIndex: 11, MinRatchetLevel: 0
+[   0.0086 ] FwIndex: 12, MinRatchetLevel: 0
+[   0.0086 ] FwIndex: 13, MinRatchetLevel: 0
+[   0.0086 ] FwIndex: 14, MinRatchetLevel: 0
+[   0.0086 ] FwIndex: 15, MinRatchetLevel: 0
+[   0.0086 ] FwIndex: 16, MinRatchetLevel: 0
+[   0.0086 ] FwIndex: 17, MinRatchetLevel: 0
+[   0.0086 ] FwIndex: 18, MinRatchetLevel: 0
+[   0.0086 ] FwIndex: 19, MinRatchetLevel: 0
+[   0.0086 ] FwIndex: 30, MinRatchetLevel: 0
+[   0.0086 ] FwIndex: 31, MinRatchetLevel: 0
+[   0.0086 ] 
+[   0.0087 ] header_magic: 414e4452
+[   0.0417 ] tegrahost_v2 --chip 0x19 --align 1_boot_aligned.img
+[   0.0446 ] tegrahost_v2 --chip 0x19 0 --magicid KRNL --ratchet_blob ratchet_blob.bin --appendsigheader 1_boot_aligned.img zerosbk
+[   0.0456 ] adding BCH for 1_boot_aligned.img
+[   1.2260 ] tegrasign_v3.py --key  --list 1_boot_aligned_sigheader.img_list.xml --pubkeyhash pub_key.key
+[   1.2264 ] Assuming zero filled SBK key : not reading 
+[   1.3298 ] Warning: pub_key.key is not found
+[   1.3319 ] tegrahost_v2 --chip 0x19 0 --updatesigheader 1_boot_aligned_sigheader.img.encrypt 1_boot_aligned_sigheader.img.hash zerosbk
+[   2.0434 ] Signed file: /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/temp_user_dir/boot_sigheader.img.encrypt
+l4t_sign_image.sh: Generate header for boot_sigheader.img.encrypt
+l4t_sign_image.sh: chip 0x19: add 0x281c000 to offset  0x8 in sig file
+l4t_sign_image.sh: Generate 16-byte-size-aligned base file for boot_sigheader.img.encrypt
+l4t_sign_image.sh: the signed file is /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/temp_user_dir/boot_sigheader.img.encrypt
+Making recovery ramdisk for recovery image...
+Re-generating recovery ramdisk for recovery image...
+/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/ramdisk_tmp /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra
+36144 blocks
+
+gzip: /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/kernel/Image: not in gzip format
+_BASE_KERNEL_VERSION=5.10.104-tegra
+53066 blocks
+Making Recovery image...
+copying recdtbfile(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/kernel/dtb/tegra194-p3668-0001-p3509-0000.dtb.rec)... done.
+20+0 records in
+20+0 records out
+20 bytes copied, 0.000222315 s, 90.0 kB/s
+Existing sosfile(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/mb1_t194_prod.bin) reused.
+Existing tegraboot(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/nvtboot_t194.bin) reused.
+Existing cpu_bootloader(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/nvtboot_cpu_t194.bin) reused.
+Existing mb2blfile(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/nvtboot_recovery_t194.bin) reused.
+Existing mtspreboot(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/preboot_c10_prod_cr.bin) reused.
+Existing mcepreboot(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/mce_c10_prod_cr.bin) reused.
+Existing mtsproper(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/mts_c10_prod_cr.bin) reused.
+Existing mb1file(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/mb1_t194_prod.bin) reused.
+Existing bpffile(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/bpmp-2_t194.bin) reused.
+Existing bpfdtbfile(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/tegra194-a02-bpmp-p3668-a00_lz4.dtb) reused.
+Existing scefile(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/camera-rtcpu-sce.img) reused.
+Existing camerafw(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/camera-rtcpu-t194-rce.img) reused.
+Existing apefile(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/adsp-fw.bin) reused.
+Existing spefile(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/spe_t194.bin) reused.
+Existing wb0boot(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/warmboot_t194_prod.bin) reused.
+Existing tosfile(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/tos-mon-only_t194.img) reused.
+Existing eksfile(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/eks.img) reused.
+copying soft_fuses(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/BCT/tegra194-mb1-soft-fuses-l4t.cfg)... done.
+copying dtbfile(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/kernel/dtb/tegra194-p3668-0001-p3509-0000.dtb)... done.
+Copying nv_boot_control.conf to rootfs
+/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/tegraflash.py --chip 0x19 --key  --minratchet_config tegra194-mb1-bct-ratchet-p3668.cfg --cmd sign kernel_tegra194-p3668-0001-p3509-0000.dtb kernel_dtb
+Welcome to Tegra Flash
+version 1.0.0
+Type ? or help for help and q or quit to exit
+Use ! to execute system commands
+ 
+[   0.0238 ] Generating signature
+[   0.0269 ] tegrasign_v3.py --key  --getmode mode.txt
+[   0.0272 ] Assuming zero filled SBK key : not reading 
+[   0.0267 ] Generating ratchet blob
+[   0.0289 ] tegrabct_v2 --chip 0x19 0 --ratchet_blob ratchet_blob.bin --minratchet tegra194-mb1-bct-ratchet-p3668.cfg
+[   0.0301 ] FwIndex: 1, MinRatchetLevel: 0
+[   0.0307 ] FwIndex: 2, MinRatchetLevel: 0
+[   0.0307 ] FwIndex: 3, MinRatchetLevel: 0
+[   0.0307 ] FwIndex: 4, MinRatchetLevel: 0
+[   0.0307 ] FwIndex: 5, MinRatchetLevel: 0
+[   0.0307 ] FwIndex: 6, MinRatchetLevel: 0
+[   0.0307 ] FwIndex: 7, MinRatchetLevel: 0
+[   0.0307 ] FwIndex: 11, MinRatchetLevel: 0
+[   0.0307 ] FwIndex: 12, MinRatchetLevel: 0
+[   0.0307 ] FwIndex: 13, MinRatchetLevel: 0
+[   0.0307 ] FwIndex: 14, MinRatchetLevel: 0
+[   0.0307 ] FwIndex: 15, MinRatchetLevel: 0
+[   0.0307 ] FwIndex: 16, MinRatchetLevel: 0
+[   0.0307 ] FwIndex: 17, MinRatchetLevel: 0
+[   0.0307 ] FwIndex: 18, MinRatchetLevel: 0
+[   0.0307 ] FwIndex: 19, MinRatchetLevel: 0
+[   0.0307 ] FwIndex: 30, MinRatchetLevel: 0
+[   0.0307 ] FwIndex: 31, MinRatchetLevel: 0
+[   0.0307 ] 
+[   0.0308 ] header_magic: d00dfeed
+[   0.0335 ] tegrahost_v2 --chip 0x19 --align 1_kernel_tegra194-p3668-0001-p3509-0000_aligned.dtb
+[   0.0372 ] tegrahost_v2 --chip 0x19 0 --magicid KDTB --ratchet_blob ratchet_blob.bin --appendsigheader 1_kernel_tegra194-p3668-0001-p3509-0000_aligned.dtb zerosbk
+[   0.0383 ] adding BCH for 1_kernel_tegra194-p3668-0001-p3509-0000_aligned.dtb
+[   0.0568 ] tegrasign_v3.py --key  --list 1_kernel_tegra194-p3668-0001-p3509-0000_aligned_sigheader.dtb_list.xml --pubkeyhash pub_key.key
+[   0.0571 ] Assuming zero filled SBK key : not reading 
+[   0.0601 ] Warning: pub_key.key is not found
+[   0.0616 ] tegrahost_v2 --chip 0x19 0 --updatesigheader 1_kernel_tegra194-p3668-0001-p3509-0000_aligned_sigheader.dtb.encrypt 1_kernel_tegra194-p3668-0001-p3509-0000_aligned_sigheader.dtb.hash zerosbk
+[   0.0695 ] Signed file: /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/temp_user_dir/kernel_tegra194-p3668-0001-p3509-0000_sigheader.dtb.encrypt
+l4t_sign_image.sh: Generate header for kernel_tegra194-p3668-0001-p3509-0000_sigheader.dtb.encrypt
+l4t_sign_image.sh: chip 0x19: add 0x4f10a to offset  0x8 in sig file
+l4t_sign_image.sh: Generate 16-byte-size-aligned base file for kernel_tegra194-p3668-0001-p3509-0000_sigheader.dtb.encrypt
+l4t_sign_image.sh: the signed file is /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/temp_user_dir/kernel_tegra194-p3668-0001-p3509-0000_sigheader.dtb.encrypt
+	populating kernel to rootfs... done.
+	populating initrd to rootfs... done.
+	populating kernel_tegra194-p3668-0001-p3509-0000.dtb to rootfs... done.
+Making system.img... 
+	Setting "FDT /boot/dtb/kernel_tegra194-p3668-0001-p3509-0000.dtb" successfully in the extlinux.conf...done.
+	populating rootfs from /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/rootfs ... 	populating /boot/extlinux/extlinux.conf ... done.
+	generating sig file of Image ... /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/tegraflash.py --chip 0x19 --key  --minratchet_config tegra194-mb1-bct-ratchet-p3668.cfg --cmd sign ./boot/Image kernel
+Welcome to Tegra Flash
+version 1.0.0
+Type ? or help for help and q or quit to exit
+Use ! to execute system commands
+ 
+[   0.0256 ] Generating signature
+[   0.0289 ] tegrasign_v3.py --key  --getmode mode.txt
+[   0.0293 ] Assuming zero filled SBK key : not reading 
+[   0.0287 ] Generating ratchet blob
+[   0.0315 ] tegrabct_v2 --chip 0x19 0 --ratchet_blob ratchet_blob.bin --minratchet tegra194-mb1-bct-ratchet-p3668.cfg
+[   0.0328 ] FwIndex: 1, MinRatchetLevel: 0
+[   0.0334 ] FwIndex: 2, MinRatchetLevel: 0
+[   0.0334 ] FwIndex: 3, MinRatchetLevel: 0
+[   0.0334 ] FwIndex: 4, MinRatchetLevel: 0
+[   0.0334 ] FwIndex: 5, MinRatchetLevel: 0
+[   0.0334 ] FwIndex: 6, MinRatchetLevel: 0
+[   0.0334 ] FwIndex: 7, MinRatchetLevel: 0
+[   0.0334 ] FwIndex: 11, MinRatchetLevel: 0
+[   0.0334 ] FwIndex: 12, MinRatchetLevel: 0
+[   0.0334 ] FwIndex: 13, MinRatchetLevel: 0
+[   0.0334 ] FwIndex: 14, MinRatchetLevel: 0
+[   0.0334 ] FwIndex: 15, MinRatchetLevel: 0
+[   0.0334 ] FwIndex: 16, MinRatchetLevel: 0
+[   0.0334 ] FwIndex: 17, MinRatchetLevel: 0
+[   0.0334 ] FwIndex: 18, MinRatchetLevel: 0
+[   0.0334 ] FwIndex: 19, MinRatchetLevel: 0
+[   0.0334 ] FwIndex: 30, MinRatchetLevel: 0
+[   0.0334 ] FwIndex: 31, MinRatchetLevel: 0
+[   0.0334 ] 
+[   0.0338 ] header_magic: 4d5a0091
+[   0.0846 ] tegrahost_v2 --chip 0x19 --align 1_Image_aligned
+[   0.0878 ] tegrahost_v2 --chip 0x19 0 --magicid KRNL --ratchet_blob ratchet_blob.bin --appendsigheader 1_Image_aligned zerosbk
+[   0.0888 ] adding BCH for 1_Image_aligned
+[   1.0415 ] tegrasign_v3.py --key  --list 1_Image_aligned_sigheader_list.xml --pubkeyhash pub_key.key
+[   1.0419 ] Assuming zero filled SBK key : not reading 
+[   1.1245 ] Warning: pub_key.key is not found
+[   1.1266 ] tegrahost_v2 --chip 0x19 0 --updatesigheader 1_Image_aligned_sigheader.encrypt 1_Image_aligned_sigheader.hash zerosbk
+[   1.6703 ] Signed file: /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/mnt/Image_sigheader.encrypt
+l4t_sign_image.sh: Generate header for Image_sigheader.encrypt
+l4t_sign_image.sh: chip 0x19: add 0x2019200 to offset  0x8 in sig file
+l4t_sign_image.sh: Generate 16-byte-size-aligned base file for Image_sigheader.encrypt
+l4t_sign_image.sh: the sign header is saved at ./boot/Image.sig
+done.
+	generating sig file of kernel_tegra194-p3668-0001-p3509-0000.dtb ... /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/tegraflash.py --chip 0x19 --key  --minratchet_config tegra194-mb1-bct-ratchet-p3668.cfg --cmd sign ./boot/dtb/kernel_tegra194-p3668-0001-p3509-0000.dtb kernel_dtb
+Welcome to Tegra Flash
+version 1.0.0
+Type ? or help for help and q or quit to exit
+Use ! to execute system commands
+ 
+[   0.0224 ] Generating signature
+[   0.0259 ] tegrasign_v3.py --key  --getmode mode.txt
+[   0.0263 ] Assuming zero filled SBK key : not reading 
+[   0.0257 ] Generating ratchet blob
+[   0.0283 ] tegrabct_v2 --chip 0x19 0 --ratchet_blob ratchet_blob.bin --minratchet tegra194-mb1-bct-ratchet-p3668.cfg
+[   0.0297 ] FwIndex: 1, MinRatchetLevel: 0
+[   0.0304 ] FwIndex: 2, MinRatchetLevel: 0
+[   0.0304 ] FwIndex: 3, MinRatchetLevel: 0
+[   0.0304 ] FwIndex: 4, MinRatchetLevel: 0
+[   0.0304 ] FwIndex: 5, MinRatchetLevel: 0
+[   0.0304 ] FwIndex: 6, MinRatchetLevel: 0
+[   0.0304 ] FwIndex: 7, MinRatchetLevel: 0
+[   0.0304 ] FwIndex: 11, MinRatchetLevel: 0
+[   0.0304 ] FwIndex: 12, MinRatchetLevel: 0
+[   0.0304 ] FwIndex: 13, MinRatchetLevel: 0
+[   0.0304 ] FwIndex: 14, MinRatchetLevel: 0
+[   0.0304 ] FwIndex: 15, MinRatchetLevel: 0
+[   0.0304 ] FwIndex: 16, MinRatchetLevel: 0
+[   0.0305 ] FwIndex: 17, MinRatchetLevel: 0
+[   0.0305 ] FwIndex: 18, MinRatchetLevel: 0
+[   0.0305 ] FwIndex: 19, MinRatchetLevel: 0
+[   0.0305 ] FwIndex: 30, MinRatchetLevel: 0
+[   0.0305 ] FwIndex: 31, MinRatchetLevel: 0
+[   0.0305 ] 
+[   0.0310 ] header_magic: d00dfeed
+[   0.0345 ] tegrahost_v2 --chip 0x19 --align 1_kernel_tegra194-p3668-0001-p3509-0000_aligned.dtb
+[   0.0382 ] tegrahost_v2 --chip 0x19 0 --magicid KDTB --ratchet_blob ratchet_blob.bin --appendsigheader 1_kernel_tegra194-p3668-0001-p3509-0000_aligned.dtb zerosbk
+[   0.0394 ] adding BCH for 1_kernel_tegra194-p3668-0001-p3509-0000_aligned.dtb
+[   0.0556 ] tegrasign_v3.py --key  --list 1_kernel_tegra194-p3668-0001-p3509-0000_aligned_sigheader.dtb_list.xml --pubkeyhash pub_key.key
+[   0.0560 ] Assuming zero filled SBK key : not reading 
+[   0.0602 ] Warning: pub_key.key is not found
+[   0.0623 ] tegrahost_v2 --chip 0x19 0 --updatesigheader 1_kernel_tegra194-p3668-0001-p3509-0000_aligned_sigheader.dtb.encrypt 1_kernel_tegra194-p3668-0001-p3509-0000_aligned_sigheader.dtb.hash zerosbk
+[   0.0719 ] Signed file: /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/mnt/kernel_tegra194-p3668-0001-p3509-0000_sigheader.dtb.encrypt
+l4t_sign_image.sh: Generate header for kernel_tegra194-p3668-0001-p3509-0000_sigheader.dtb.encrypt
+l4t_sign_image.sh: chip 0x19: add 0x4f10a to offset  0x8 in sig file
+l4t_sign_image.sh: Generate 16-byte-size-aligned base file for kernel_tegra194-p3668-0001-p3509-0000_sigheader.dtb.encrypt
+l4t_sign_image.sh: the sign header is saved at ./boot/dtb/kernel_tegra194-p3668-0001-p3509-0000.dtb.sig
+done.
+	generating sig file of initrd ... /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/tegraflash.py --chip 0x19 --key  --cmd sign ./boot/initrd data
+Welcome to Tegra Flash
+version 1.0.0
+Type ? or help for help and q or quit to exit
+Use ! to execute system commands
+ 
+[   0.0222 ] Generating signature
+[   0.0253 ] tegrasign_v3.py --key  --getmode mode.txt
+[   0.0257 ] Assuming zero filled SBK key : not reading 
+[   0.0256 ] header_magic: 1f8b0800
+[   0.0353 ] tegrahost_v2 --chip 0x19 --align 1_initrd_aligned
+[   0.0383 ] tegrahost_v2 --chip 0x19 0 --magicid DATA --appendsigheader 1_initrd_aligned zerosbk
+[   0.0392 ] adding BCH for 1_initrd_aligned
+[   0.2780 ] tegrasign_v3.py --key  --list 1_initrd_aligned_sigheader_list.xml --pubkeyhash pub_key.key
+[   0.2784 ] Assuming zero filled SBK key : not reading 
+[   0.3009 ] Warning: pub_key.key is not found
+[   0.3028 ] tegrahost_v2 --chip 0x19 0 --updatesigheader 1_initrd_aligned_sigheader.encrypt 1_initrd_aligned_sigheader.hash zerosbk
+[   0.4385 ] Signed file: /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/mnt/initrd_sigheader.encrypt
+l4t_sign_image.sh: Generate header for initrd_sigheader.encrypt
+l4t_sign_image.sh: chip 0x19: add 0x8019a3 to offset  0x8 in sig file
+l4t_sign_image.sh: Generate 16-byte-size-aligned base file for initrd_sigheader.encrypt
+l4t_sign_image.sh: the sign header is saved at ./boot/initrd.sig
+done.
+	generating sig file of extlinux.conf ... /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/tegraflash.py --chip 0x19 --key  --cmd sign ./boot/extlinux/extlinux.conf data
+Welcome to Tegra Flash
+version 1.0.0
+Type ? or help for help and q or quit to exit
+Use ! to execute system commands
+ 
+[   0.0224 ] Generating signature
+[   0.0255 ] tegrasign_v3.py --key  --getmode mode.txt
+[   0.0258 ] Assuming zero filled SBK key : not reading 
+[   0.0253 ] header_magic: 54494d45
+[   0.0277 ] tegrahost_v2 --chip 0x19 --align 1_extlinux_aligned.conf
+[   0.0315 ] tegrahost_v2 --chip 0x19 0 --magicid DATA --appendsigheader 1_extlinux_aligned.conf zerosbk
+[   0.0329 ] adding BCH for 1_extlinux_aligned.conf
+[   0.0373 ] tegrasign_v3.py --key  --list 1_extlinux_aligned_sigheader.conf_list.xml --pubkeyhash pub_key.key
+[   0.0376 ] Assuming zero filled SBK key : not reading 
+[   0.0399 ] Warning: pub_key.key is not found
+[   0.0416 ] tegrahost_v2 --chip 0x19 0 --updatesigheader 1_extlinux_aligned_sigheader.conf.encrypt 1_extlinux_aligned_sigheader.conf.hash zerosbk
+[   0.0435 ] Signed file: /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/mnt/extlinux_sigheader.conf.encrypt
+l4t_sign_image.sh: Generate header for extlinux_sigheader.conf.encrypt
+l4t_sign_image.sh: chip 0x19: add 0x3d0 to offset  0x8 in sig file
+l4t_sign_image.sh: Generate 16-byte-size-aligned base file for extlinux_sigheader.conf.encrypt
+l4t_sign_image.sh: the sign header is saved at ./boot/extlinux/extlinux.conf.sig
+done.
+	Sync'ing system.img ... done.
+	Converting RAW image to Sparse image... done.
+system.img built successfully. 
+Existing tbcfile(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/nvdisp-init.bin) reused.
+131072+0 records in
+131072+0 records out
+67108864 bytes (67 MB, 64 MiB) copied, 0.402943 s, 167 MB/s
+	Sync'ing esp.img ... done.
+copying tbcdtbfile(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/kernel/dtb/tegra194-p3668-0001-p3509-0000.dtb)... done.
+copying cfgfile(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/t186ref/cfg/flash_l4t_t194_spi_emmc_p3668.xml) to flash.xml... done.
+done.
+Existing flasher(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/nvtboot_recovery_cpu_t194.bin) reused.
+Existing flashapp(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/tegraflash.py) reused.
+Existing overlay_dtb(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/L4TConfiguration.dtbo) reused.
+Existing overlay_dtb(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/tegra194-p3668-p3509-overlay.dtbo) reused.
+Existing overlay_dtb(/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/L4TRootfsInfo.dtbo) reused.
+./tegraflash.py --bl nvtboot_recovery_cpu_t194.bin --sdram_config tegra194-mb1-bct-memcfg-p3668-0001-a00.cfg,tegra194-memcfg-sw-override.cfg  --odmdata 0xB8190000  --overlay_dtb L4TConfiguration.dtbo,tegra194-p3668-p3509-overlay.dtbo,L4TRootfsInfo.dtbo  --bldtb tegra194-p3668-0001-p3509-0000.dtb --applet mb1_t194_prod.bin --cmd "flash; reboot" --soft_fuses tegra194-mb1-soft-fuses-l4t.cfg  --cfg flash.xml --chip 0x19 --minratchet_config tegra194-mb1-bct-ratchet-p3668.cfg --device_config tegra19x-mb1-bct-device-qspi-p3668.cfg --misc_cold_boot_config tegra194-mb1-bct-misc-l4t.cfg --misc_config tegra194-mb1-bct-misc-flash.cfg --pinmux_config tegra19x-mb1-pinmux-p3668-a01.cfg --gpioint_config tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg --pmic_config tegra194-mb1-bct-pmic-p3668-0001-a00.cfg --pmc_config tegra19x-mb1-padvoltage-p3668-a01.cfg --prod_config tegra19x-mb1-prod-p3668-0001-a00.cfg --scr_config tegra194-mb1-bct-scr-cbb-mini-p3668.cfg --scr_cold_boot_config tegra194-mb1-bct-scr-cbb-mini-p3668.cfg --br_cmd_config tegra194-mb1-bct-reset-p3668-0001-a00.cfg --dev_params tegra194-br-bct-qspi-l4t.cfg,tegra194-br-bct_b-qspi-l4t.cfg  --bin "mb2_bootloader nvtboot_recovery_t194.bin; mts_preboot preboot_c10_prod_cr.bin; mts_mce mce_c10_prod_cr.bin; mts_proper mts_c10_prod_cr.bin; bpmp_fw bpmp-2_t194.bin; bpmp_fw_dtb tegra194-a02-bpmp-p3668-a00_lz4.dtb; spe_fw spe_t194.bin; tos tos-mon-only_t194.img; eks eks.img; bootloader_dtb tegra194-p3668-0001-p3509-0000.dtb"   --secondary_gpt_backup  --bct_backup  --boot_chain A 
+saving flash command in /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/flashcmd.txt
+saving Windows flash command to /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/flash_win.bat
+*** Flashing target device started. ***
+Welcome to Tegra Flash
+version 1.0.0
+Type ? or help for help and q or quit to exit
+Use ! to execute system commands
+ 
+[   0.0350 ] tegrasign_v3.py --key None --getmode mode.txt
+[   0.0354 ] Assuming zero filled SBK key
+[   0.0033 ] Generating RCM messages
+[   0.0061 ] tegrahost_v2 --chip 0x19 0 --magicid MB1B --appendsigheader mb1_t194_prod.bin zerosbk
+[   0.0073 ] Header already present for mb1_t194_prod.bin
+[   0.0465 ] tegrasign_v3.py --key None --getmode mode.txt
+[   0.0468 ] Assuming zero filled SBK key
+[   0.0499 ] tegrasign_v3.py --file mb1_t194_prod_sigheader.bin --key None --length 1136 --offset 2960 --pubkeyhash pub_key.key
+[   0.0503 ] Assuming zero filled SBK key
+[   0.0539 ] Warning: pub_key.key is not found
+[   0.0239 ] tegrahost_v2 --chip 0x19 0 --updatesigheader mb1_t194_prod_sigheader.bin mb1_t194_prod_sigheader.hash zerosbk
+[   0.0325 ] tegrabct_v2 --chip 0x19 0 --sfuse tegra194-mb1-soft-fuses-l4t.cfg sfuse.bin
+[   0.0367 ] tegrabct_v2 --chip 0x19 0 --ratchet_blob ratchet_blob.bin --minratchet tegra194-mb1-bct-ratchet-p3668.cfg
+[   0.0379 ] FwIndex: 1, MinRatchetLevel: 0
+[   0.0385 ] FwIndex: 2, MinRatchetLevel: 0
+[   0.0385 ] FwIndex: 3, MinRatchetLevel: 0
+[   0.0385 ] FwIndex: 4, MinRatchetLevel: 0
+[   0.0385 ] FwIndex: 5, MinRatchetLevel: 0
+[   0.0385 ] FwIndex: 6, MinRatchetLevel: 0
+[   0.0386 ] FwIndex: 7, MinRatchetLevel: 0
+[   0.0386 ] FwIndex: 11, MinRatchetLevel: 0
+[   0.0386 ] FwIndex: 12, MinRatchetLevel: 0
+[   0.0386 ] FwIndex: 13, MinRatchetLevel: 0
+[   0.0386 ] FwIndex: 14, MinRatchetLevel: 0
+[   0.0386 ] FwIndex: 15, MinRatchetLevel: 0
+[   0.0386 ] FwIndex: 16, MinRatchetLevel: 0
+[   0.0386 ] FwIndex: 17, MinRatchetLevel: 0
+[   0.0386 ] FwIndex: 18, MinRatchetLevel: 0
+[   0.0386 ] FwIndex: 19, MinRatchetLevel: 0
+[   0.0386 ] FwIndex: 30, MinRatchetLevel: 0
+[   0.0387 ] FwIndex: 31, MinRatchetLevel: 0
+[   0.0387 ] 
+[   0.0416 ] tegrarcm_v2 --listrcm rcm_list.xml --chip 0x19 0 --sfuses sfuse.bin --download rcm mb1_t194_prod_sigheader.bin 0 0
+[   0.0429 ] RCM 0 is saved as rcm_0.rcm
+[   0.0485 ] RCM 1 is saved as rcm_1.rcm
+[   0.0485 ] RCM 2 is saved as rcm_2.rcm
+[   0.0485 ] List of rcm files are saved in rcm_list.xml
+[   0.0485 ] 
+[   0.0485 ] Signing RCM messages
+[   0.0836 ] tegrasign_v3.py --key None --list rcm_list.xml --getmontgomeryvalues montgomery.bin --pubkeyhash pub_key.key
+[   0.0839 ] Assuming zero filled SBK key
+[   0.0913 ] Warning: pub_key.key is not found
+[   0.0590 ] Copying signature to RCM mesages
+[   0.0617 ] tegrarcm_v2 --chip 0x19 0 --updatesig rcm_list_signed.xml
+[   0.0645 ] odmdata (to decode) = 3088646144
+[   0.0645 ] Odmdata strings: PCIE_XBAR_8_1_1_0_1,UFS_DISABLED,NVHS_PCIE,enable-debug-console,enable-denver-wdt
+[   0.0645 ] Bpmp odmdata config: {'pcie-xbar-config': [0, 1, 'PCIE_XBAR_8_1_1_0_1'], 'pcie-c0-endpoint-enable': [1, 0, ''], 'pcie-c4-endpoint-enable': [1, 0, ''], 'ufs-config': [0, 1, 'UFS_DISABLED'], 'sata-enable': [1, 0, ''], 'nvhs-owner': [0, 1, 'PCIE'], 'pcie-c5-endpoint-enable': [1, 0, '']}
+[   0.0687 ] bpmp_dtb is compressed; decompressing...
+[   0.0687 ] lz4c -df tegra194-a02-bpmp-p3668-a00_lz4.dtb tegra194-a02-bpmp-p3668-a00_lz4_with_odm.dtb
+[   0.0715 ] tegra194-a02-bpmp-p3 : decoded 442560 bytes                                    
+[   0.0715 ] 
+[   0.2228 ] Re-compressing updated bpmp_dtb
+[   0.2229 ] lz4c -zf tegra194-a02-bpmp-p3668-a00_lz4_with_odm.dtb tegra194-a02-bpmp-p3668-a00_lz4.dtb
+[   0.2252 ] Compressed 442529 bytes into 32067 bytes ==> 7.25%                             
+[   0.2252 ] 
+[   0.5941 ] Concatenating L4TConfiguration.dtbo,tegra194-p3668-p3509-overlay.dtbo,L4TRootfsInfo.dtbo to tegra194-p3668-0001-p3509-0000_with_odm_overlay.dtb
+[   0.5947 ] Parsing partition layout
+[   0.6063 ] tegraparser_v2 --pt flash.xml.tmp
+[   0.6109 ] Reading ramcode from backup chip_info.bin file
+[   0.6111 ] RAMCODE Read from Device: 1
+
+[   0.6112 ] Disable BPMP dtb trim, using default dtb
+[   0.6112 ] 
+[   0.6112 ] Creating list of images to be signed
+[   0.6144 ] tegrahost_v2 --chip 0x19 0 --partitionlayout flash.xml.bin --ratchet_blob ratchet_blob.bin --list images_list.xml zerosbk
+[   0.6162 ] MB1: Nvheader already present is mb1_t194_prod_aligned.bin
+[   0.6178 ] Header already present for mb1_t194_prod_aligned_sigheader.bin
+[   0.6183 ] MB1: Nvheader already present is mb1_b_t194_prod_aligned.bin
+[   0.6240 ] Header already present for mb1_b_t194_prod_aligned_sigheader.bin
+[   0.6244 ] adding BCH for spe_t194_aligned.bin
+[   0.6290 ] adding BCH for nvtboot_t194_aligned.bin
+[   0.6326 ] Header already present for preboot_c10_prod_cr_aligned.bin
+[   0.6386 ] Header already present for mce_c10_prod_cr_aligned.bin
+[   0.6392 ] adding BCH for mts_c10_prod_cr_aligned.bin
+[   0.6519 ] Header already present for warmboot_t194_prod_aligned.bin
+[   0.7483 ] adding BCH for xusb_sil_rel_fw_aligned
+[   0.7920 ] adding BCH for nvdisp-init_aligned.bin
+[   0.8111 ] adding BCH for tegra194-p3668-0001-p3509-0000_aligned.dtb
+[   0.8985 ] adding BCH for tos-mon-only_t194_aligned.img
+[   0.9080 ] adding BCH for eks_aligned.img
+[   0.9101 ] adding BCH for adsp-fw_aligned.bin
+[   0.9534 ] adding BCH for camera-rtcpu-t194-rce_aligned.img
+[   0.9712 ] adding BCH for bpmp-2_t194_aligned.bin
+[   0.9887 ] adding BCH for tegra194-a02-bpmp-p3668-a00_lz4_aligned.dtb
+[   1.0168 ] adding BCH for spe_t194_aligned.bin
+[   1.0181 ] adding BCH for nvtboot_t194_aligned.bin
+[   1.0213 ] Header already present for preboot_c10_prod_cr_aligned.bin
+[   1.0274 ] Header already present for mce_c10_prod_cr_aligned.bin
+[   1.0281 ] adding BCH for mts_c10_prod_cr_aligned.bin
+[   1.0423 ] Header already present for warmboot_t194_prod_aligned.bin
+[   1.1805 ] adding BCH for xusb_sil_rel_fw_aligned
+[   1.1820 ] adding BCH for nvdisp-init_aligned.bin
+[   1.2000 ] adding BCH for tegra194-p3668-0001-p3509-0000_aligned.dtb
+[   1.2880 ] adding BCH for tos-mon-only_t194_aligned.img
+[   1.3289 ] adding BCH for eks_aligned.img
+[   1.3344 ] adding BCH for adsp-fw_aligned.bin
+[   1.3365 ] adding BCH for camera-rtcpu-t194-rce_aligned.img
+[   1.3513 ] adding BCH for bpmp-2_t194_aligned.bin
+[   1.3685 ] adding BCH for tegra194-a02-bpmp-p3668-a00_lz4_aligned.dtb
+[   1.3983 ] Filling MB1 storage info
+[   1.3983 ] Parsing dev params for multi chains
+[   1.3983 ] Generating br-bct
+[   1.4010 ] Performing cfg overlay
+[   1.4011 ] ['tegra194-mb1-bct-memcfg-p3668-0001-a00.cfg', 'tegra194-memcfg-sw-override.cfg']
+[   1.4015 ] sw_memcfg_overlay.pl -c tegra194-mb1-bct-memcfg-p3668-0001-a00.cfg -s tegra194-memcfg-sw-override.cfg -o /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531.cfg
+[   1.4657 ] Updating dev and MSS params in BR BCT
+[   1.4658 ] tegrabct_v2 --dev_param tegra194-br-bct-qspi-l4t.cfg --sdram /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531.cfg --brbct br_bct.cfg --sfuse tegra194-mb1-soft-fuses-l4t.cfg --chip 0x19 0
+[   1.5329 ] Updating bl info
+[   1.5357 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updateblinfo flash.xml.bin
+[   1.5663 ] Generating br-bct
+[   1.5707 ] Performing cfg overlay
+[   1.5708 ] ['/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531.cfg']
+[   1.5708 ] Updating dev and MSS params in BR BCT
+[   1.5709 ] tegrabct_v2 --dev_param tegra194-br-bct_b-qspi-l4t.cfg --sdram /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531.cfg --brbct br_bct.cfg --sfuse tegra194-mb1-soft-fuses-l4t.cfg --chip 0x19 0
+[   1.6425 ] Updating bl info
+[   1.6461 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updateblinfo flash.xml.bin
+[   1.6863 ] Generating BCT backup image
+[   1.6865 ] dd if=/dev/zero of=bct_backup.img bs=1 count=32768
+[   1.6897 ] 32768+0 records in
+[   1.7606 ] 32768+0 records out
+[   1.7606 ] 32768 bytes (33 kB, 32 KiB) copied, 0.0699714 s, 468 kB/s
+[   1.7606 ] 
+[   1.7607 ] Concatenating BCT for chain A to bct_backup.img
+
+[   1.7607 ] dd if=br_bct_BR.bct of=bct_backup.img bs=1 seek=0 conv=notrunc
+[   1.7622 ] 2888+0 records in
+[   1.7675 ] 2888+0 records out
+[   1.7676 ] 2888 bytes (2.9 kB, 2.8 KiB) copied, 0.00478406 s, 604 kB/s
+[   1.7676 ] 
+[   1.7676 ] Concatenating BCT for chain B to bct_backup.img
+
+[   1.7676 ] dd if=br_bct_b_BR.bct of=bct_backup.img bs=1 seek=16384 conv=notrunc
+[   1.7688 ] 2888+0 records in
+[   1.7753 ] 2888+0 records out
+[   1.7754 ] 2888 bytes (2.9 kB, 2.8 KiB) copied, 0.00605904 s, 477 kB/s
+[   1.7754 ] 
+[   1.7754 ] Generating signatures
+[   1.8105 ] tegrasign_v3.py --key None --list images_list.xml --pubkeyhash pub_key.key
+[   1.8110 ] Assuming zero filled SBK key
+[   1.9109 ] Warning: pub_key.key is not found
+[   1.8787 ] Parsing dev params for multi chains
+[   1.8787 ] Generating br-bct
+[   1.8809 ] Performing cfg overlay
+[   1.8809 ] ['/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531.cfg']
+[   1.8810 ] Updating dev and MSS params in BR BCT
+[   1.8810 ] tegrabct_v2 --dev_param tegra194-br-bct-qspi-l4t.cfg --sdram /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531.cfg --brbct br_bct.cfg --sfuse tegra194-mb1-soft-fuses-l4t.cfg --chip 0x19 0
+[   1.9918 ] Updating bl info
+[   1.9951 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updateblinfo flash.xml.bin --updatesig images_list_signed.xml
+[   1.9993 ] Updating smd info
+[   2.0023 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 --updatesmdinfo flash.xml.bin
+[   2.0045 ] Updating Odmdata
+[   2.0076 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updatefields Odmdata =0xB8190000
+[   2.0095 ] Signing BCT
+[   2.0095 ] Get Signed section of bct
+[   2.0124 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --listbct bct_list.xml
+[   2.0496 ] tegrasign_v3.py --key None --list bct_list.xml --getmontgomeryvalues montgomery.bin --pubkeyhash pub_key.key
+[   2.0500 ] Assuming zero filled SBK key
+[   2.0532 ] Warning: pub_key.key is not found
+[   2.0209 ] Updating BCT with signature
+[   2.0239 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updatesig bct_list_signed.xml
+[   2.0260 ] Generating br-bct
+[   2.0289 ] Performing cfg overlay
+[   2.0290 ] ['/home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531.cfg']
+[   2.0290 ] Updating dev and MSS params in BR BCT
+[   2.0291 ] tegrabct_v2 --dev_param tegra194-br-bct_b-qspi-l4t.cfg --sdram /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531.cfg --brbct br_bct.cfg --sfuse tegra194-mb1-soft-fuses-l4t.cfg --chip 0x19 0
+[   2.0960 ] Updating bl info
+[   2.0988 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updateblinfo flash.xml.bin --updatesig images_list_signed.xml
+[   2.1473 ] Updating smd info
+[   2.1517 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 --updatesmdinfo flash.xml.bin
+[   2.1554 ] Updating Odmdata
+[   2.1604 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updatefields Odmdata =0xB8190000
+[   2.1639 ] Signing BCT
+[   2.1639 ] Get Signed section of bct
+[   2.1666 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --listbct bct_list.xml
+[   2.2042 ] tegrasign_v3.py --key None --list bct_list.xml --getmontgomeryvalues montgomery.bin --pubkeyhash pub_key.key
+[   2.2045 ] Assuming zero filled SBK key
+[   2.2071 ] Warning: pub_key.key is not found
+[   2.1749 ] Updating BCT with signature
+[   2.1779 ] tegrabct_v2 --brbct br_bct_BR.bct --chip 0x19 0 --updatesig bct_list_signed.xml
+[   2.1800 ] Generating BCT backup image
+[   2.1800 ] dd if=/dev/zero of=bct_backup.img bs=1 count=32768
+[   2.1814 ] 32768+0 records in
+[   2.2528 ] 32768+0 records out
+[   2.2528 ] 32768 bytes (33 kB, 32 KiB) copied, 0.0706999 s, 463 kB/s
+[   2.2528 ] 
+[   2.2529 ] Concatenating BCT for chain A to bct_backup.img
+
+[   2.2529 ] dd if=br_bct_BR.bct of=bct_backup.img bs=1 seek=0 conv=notrunc
+[   2.2545 ] 2888+0 records in
+[   2.2602 ] 2888+0 records out
+[   2.2602 ] 2888 bytes (2.9 kB, 2.8 KiB) copied, 0.00515099 s, 561 kB/s
+[   2.2603 ] 
+[   2.2603 ] Concatenating BCT for chain B to bct_backup.img
+
+[   2.2603 ] dd if=br_bct_b_BR.bct of=bct_backup.img bs=1 seek=16384 conv=notrunc
+[   2.2617 ] 2888+0 records in
+[   2.2688 ] 2888+0 records out
+[   2.2688 ] 2888 bytes (2.9 kB, 2.8 KiB) copied, 0.00647659 s, 446 kB/s
+[   2.2688 ] 
+[   2.2689 ] Generating coldboot mb1-bct
+[   2.2938 ] tegrabct_v2 --chip 0x19 0 --mb1bct mb1_cold_boot_bct.cfg --sdram /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531.cfg --misc tegra194-mb1-bct-misc-l4t.cfg --scr tegra194-mb1-bct-scr-cbb-mini-p3668.cfg --pinmux tegra19x-mb1-pinmux-p3668-a01.cfg --pmc tegra19x-mb1-padvoltage-p3668-a01.cfg --pmic tegra194-mb1-bct-pmic-p3668-0001-a00.cfg --brcommand tegra194-mb1-bct-reset-p3668-0001-a00.cfg --prod tegra19x-mb1-prod-p3668-0001-a00.cfg --gpioint tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg --device tegra19x-mb1-bct-device-qspi-p3668.cfg
+[   2.2969 ] MB1-BCT version: 0x1
+
+[   2.2977 ] Parsing config file :tegra19x-mb1-pinmux-p3668-a01.cfg 
+[   2.2984 ] Added Platform Config 0 data with size :- 2496
+
+[   2.3016 ] Parsing config file :tegra194-mb1-bct-scr-cbb-mini-p3668.cfg 
+[   2.3024 ] Added Platform Config 1 data with size :- 19640
+
+[   2.3202 ] Parsing config file :tegra19x-mb1-padvoltage-p3668-a01.cfg 
+[   2.3207 ] Added Platform Config 2 data with size :- 24
+
+[   2.3210 ] Parsing config file :tegra194-mb1-bct-pmic-p3668-0001-a00.cfg 
+[   2.3215 ] Added Platform Config 4 data with size :- 348
+
+[   2.3219 ] Parsing config file :tegra194-mb1-bct-reset-p3668-0001-a00.cfg 
+[   2.3225 ] Added Platform Config 3 data with size :- 92
+[   2.3225 ] 
+[   2.3225 ] Parsing config file :tegra19x-mb1-prod-p3668-0001-a00.cfg 
+[   2.3225 ] Added Platform Config 5 data with size :- 140
+[   2.3225 ] 
+[   2.3225 ] Parsing config file :tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg 
+[   2.3225 ] Added Platform Config 7 data with size :- 392
+[   2.3225 ] 
+[   2.3225 ] Parsing config file :tegra19x-mb1-bct-device-qspi-p3668.cfg 
+[   2.3225 ] Added Platform Config 9 data with size :- 40
+[   2.3225 ] 
+[   2.3226 ] Updating mb1-bct with firmware information
+[   2.3254 ] tegrabct_v2 --chip 0x19 --mb1bct mb1_cold_boot_bct_MB1.bct --updatefwinfo flash.xml.bin
+[   2.3273 ] Updating mb1-bct with storage information
+[   2.3303 ] tegrabct_v2 --chip 0x19 --mb1bct mb1_cold_boot_bct_MB1.bct --updatestorageinfo flash.xml.bin
+[   2.3324 ] Updating mb1-bct with ratchet information
+[   2.3354 ] tegrabct_v2 --chip 0x19 --mb1bct mb1_cold_boot_bct_MB1.bct --minratchet tegra194-mb1-bct-ratchet-p3668.cfg
+[   2.3371 ] FwIndex: 1, MinRatchetLevel: 0
+[   2.3376 ] FwIndex: 2, MinRatchetLevel: 0
+[   2.3376 ] FwIndex: 3, MinRatchetLevel: 0
+[   2.3376 ] FwIndex: 4, MinRatchetLevel: 0
+[   2.3376 ] FwIndex: 5, MinRatchetLevel: 0
+[   2.3376 ] FwIndex: 6, MinRatchetLevel: 0
+[   2.3376 ] FwIndex: 7, MinRatchetLevel: 0
+[   2.3377 ] FwIndex: 11, MinRatchetLevel: 0
+[   2.3377 ] FwIndex: 12, MinRatchetLevel: 0
+[   2.3377 ] FwIndex: 13, MinRatchetLevel: 0
+[   2.3377 ] FwIndex: 14, MinRatchetLevel: 0
+[   2.3377 ] FwIndex: 15, MinRatchetLevel: 0
+[   2.3377 ] FwIndex: 16, MinRatchetLevel: 0
+[   2.3377 ] FwIndex: 17, MinRatchetLevel: 0
+[   2.3377 ] FwIndex: 18, MinRatchetLevel: 0
+[   2.3377 ] FwIndex: 19, MinRatchetLevel: 0
+[   2.3377 ] FwIndex: 30, MinRatchetLevel: 0
+[   2.3378 ] FwIndex: 31, MinRatchetLevel: 0
+[   2.3378 ] 
+[   2.3407 ] tegrahost_v2 --chip 0x19 --align mb1_cold_boot_bct_MB1_aligned.bct
+[   2.3448 ] tegrahost_v2 --chip 0x19 0 --magicid MBCT --ratchet_blob ratchet_blob.bin --appendsigheader mb1_cold_boot_bct_MB1_aligned.bct zerosbk
+[   2.3463 ] adding BCH for mb1_cold_boot_bct_MB1_aligned.bct
+[   2.3830 ] tegrasign_v3.py --key None --list mb1_cold_boot_bct_MB1_aligned_sigheader.bct_list.xml --pubkeyhash pub_key.key
+[   2.3833 ] Assuming zero filled SBK key
+[   2.3859 ] Warning: pub_key.key is not found
+[   2.3563 ] tegrahost_v2 --chip 0x19 0 --updatesigheader mb1_cold_boot_bct_MB1_aligned_sigheader.bct.encrypt mb1_cold_boot_bct_MB1_aligned_sigheader.bct.hash zerosbk
+[   2.3587 ] Generating recovery mb1-bct
+[   2.3614 ] tegrabct_v2 --chip 0x19 0 --mb1bct mb1_bct.cfg --sdram /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531.cfg --misc tegra194-mb1-bct-misc-flash.cfg --scr tegra194-mb1-bct-scr-cbb-mini-p3668.cfg --pinmux tegra19x-mb1-pinmux-p3668-a01.cfg --pmc tegra19x-mb1-padvoltage-p3668-a01.cfg --pmic tegra194-mb1-bct-pmic-p3668-0001-a00.cfg --brcommand tegra194-mb1-bct-reset-p3668-0001-a00.cfg --prod tegra19x-mb1-prod-p3668-0001-a00.cfg --gpioint tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg --device tegra19x-mb1-bct-device-qspi-p3668.cfg
+[   2.3628 ] MB1-BCT version: 0x1
+
+[   2.3633 ] Parsing config file :tegra19x-mb1-pinmux-p3668-a01.cfg 
+[   2.3638 ] Added Platform Config 0 data with size :- 2496
+
+[   2.3656 ] Parsing config file :tegra194-mb1-bct-scr-cbb-mini-p3668.cfg 
+[   2.3662 ] Added Platform Config 1 data with size :- 19640
+
+[   2.3849 ] Parsing config file :tegra19x-mb1-padvoltage-p3668-a01.cfg 
+[   2.3854 ] Added Platform Config 2 data with size :- 24
+
+[   2.3857 ] Parsing config file :tegra194-mb1-bct-pmic-p3668-0001-a00.cfg 
+[   2.3862 ] Added Platform Config 4 data with size :- 348
+[   2.3865 ] 
+[   2.3865 ] Parsing config file :tegra194-mb1-bct-reset-p3668-0001-a00.cfg 
+[   2.3865 ] Added Platform Config 3 data with size :- 92
+[   2.3866 ] 
+[   2.3866 ] Parsing config file :tegra19x-mb1-prod-p3668-0001-a00.cfg 
+[   2.3866 ] Added Platform Config 5 data with size :- 140
+[   2.3866 ] 
+[   2.3866 ] Parsing config file :tegra194-mb1-bct-gpioint-p3668-0001-a00.cfg 
+[   2.3866 ] Added Platform Config 7 data with size :- 392
+[   2.3866 ] 
+[   2.3866 ] Parsing config file :tegra19x-mb1-bct-device-qspi-p3668.cfg 
+[   2.3866 ] Added Platform Config 9 data with size :- 40
+[   2.3866 ] 
+[   2.3867 ] Updating mb1-bct with firmware information
+[   2.3892 ] tegrabct_v2 --chip 0x19 --mb1bct mb1_bct_MB1.bct --recov --updatefwinfo flash.xml.bin
+[   2.3912 ] Updating mb1-bct with storage information
+[   2.3941 ] tegrabct_v2 --chip 0x19 --mb1bct mb1_bct_MB1.bct --updatestorageinfo flash.xml.bin
+[   2.3961 ] Updating mb1-bct with ratchet information
+[   2.3989 ] tegrabct_v2 --chip 0x19 --mb1bct mb1_bct_MB1.bct --minratchet tegra194-mb1-bct-ratchet-p3668.cfg
+[   2.4002 ] FwIndex: 1, MinRatchetLevel: 0
+[   2.4006 ] FwIndex: 2, MinRatchetLevel: 0
+[   2.4006 ] FwIndex: 3, MinRatchetLevel: 0
+[   2.4006 ] FwIndex: 4, MinRatchetLevel: 0
+[   2.4006 ] FwIndex: 5, MinRatchetLevel: 0
+[   2.4006 ] FwIndex: 6, MinRatchetLevel: 0
+[   2.4006 ] FwIndex: 7, MinRatchetLevel: 0
+[   2.4006 ] FwIndex: 11, MinRatchetLevel: 0
+[   2.4007 ] FwIndex: 12, MinRatchetLevel: 0
+[   2.4007 ] FwIndex: 13, MinRatchetLevel: 0
+[   2.4007 ] FwIndex: 14, MinRatchetLevel: 0
+[   2.4007 ] FwIndex: 15, MinRatchetLevel: 0
+[   2.4007 ] FwIndex: 16, MinRatchetLevel: 0
+[   2.4007 ] FwIndex: 17, MinRatchetLevel: 0
+[   2.4007 ] FwIndex: 18, MinRatchetLevel: 0
+[   2.4007 ] FwIndex: 19, MinRatchetLevel: 0
+[   2.4007 ] FwIndex: 30, MinRatchetLevel: 0
+[   2.4007 ] FwIndex: 31, MinRatchetLevel: 0
+[   2.4007 ] 
+[   2.4034 ] tegrahost_v2 --chip 0x19 --align mb1_bct_MB1_aligned.bct
+[   2.4076 ] tegrahost_v2 --chip 0x19 0 --magicid MBCT --ratchet_blob ratchet_blob.bin --appendsigheader mb1_bct_MB1_aligned.bct zerosbk
+[   2.4092 ] adding BCH for mb1_bct_MB1_aligned.bct
+[   2.4459 ] tegrasign_v3.py --key None --list mb1_bct_MB1_aligned_sigheader.bct_list.xml --pubkeyhash pub_key.key
+[   2.4462 ] Assuming zero filled SBK key
+[   2.4493 ] Warning: pub_key.key is not found
+[   2.4199 ] tegrahost_v2 --chip 0x19 0 --updatesigheader mb1_bct_MB1_aligned_sigheader.bct.encrypt mb1_bct_MB1_aligned_sigheader.bct.hash zerosbk
+[   2.4225 ] Generating coldboot mem-bct
+[   2.4252 ] tegrabct_v2 --chip 0x19 0 --sdram /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531.cfg --membct /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531_1.bct /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531_2.bct /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531_3.bct /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531_4.bct
+[   2.4268 ] Packing sdram param for instance[0]
+[   2.4894 ] Packing sdram param for instance[1]
+[   2.5397 ] Packing sdram param for instance[2]
+[   2.5402 ] Packing sdram param for instance[3]
+[   2.5408 ] Packing sdram param for instance[4]
+[   2.5408 ] Packing sdram param for instance[5]
+[   2.5408 ] Packing sdram param for instance[6]
+[   2.5409 ] Packing sdram param for instance[7]
+[   2.5409 ] Packing sdram param for instance[8]
+[   2.5409 ] Packing sdram param for instance[9]
+[   2.5409 ] Packing sdram param for instance[10]
+[   2.5409 ] Packing sdram param for instance[11]
+[   2.5409 ] Packing sdram param for instance[12]
+[   2.5409 ] Packing sdram param for instance[13]
+[   2.5409 ] Packing sdram param for instance[14]
+[   2.5409 ] Packing sdram param for instance[15]
+[   2.5410 ] 
+[   2.5410 ] Getting sector size from pt
+[   2.5458 ] tegraparser_v2 --getsectorsize flash.xml.bin sector_info.bin
+[   2.5491 ] BlockSize read from layout is 200
+
+[   2.5531 ] tegrahost_v2 --chip 0x19 0 --blocksize 512 --magicid MEMB --addsigheader_multi /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531_1.bct /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531_2.bct /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531_3.bct /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531_4.bct
+[   2.5545 ] adding BCH for /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531_1.bct
+[   2.5608 ] tegrahost_v2 --chip 0x19 --align mem_coldboot_aligned.bct
+[   2.5652 ] tegrahost_v2 --chip 0x19 0 --magicid MEMB --ratchet_blob ratchet_blob.bin --appendsigheader mem_coldboot_aligned.bct zerosbk
+[   2.5667 ] Header already present for mem_coldboot_aligned.bct
+[   2.6026 ] tegrasign_v3.py --key None --list mem_coldboot_aligned_sigheader.bct_list.xml --pubkeyhash pub_key.key
+[   2.6030 ] Assuming zero filled SBK key
+[   2.6063 ] Warning: pub_key.key is not found
+[   2.5767 ] tegrahost_v2 --chip 0x19 0 --updatesigheader mem_coldboot_aligned_sigheader.bct.encrypt mem_coldboot_aligned_sigheader.bct.hash zerosbk
+[   2.5795 ] Generating recovery mem-bct
+[   2.5825 ] tegrabct_v2 --chip 0x19 0 --sdram /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531.cfg --membct /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531_1.bct /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531_2.bct /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531_3.bct /home/ptrk/Downloads/nvidia-driver-package-modified/Linux_for_Tegra/bootloader/303418/tmpubh0qx531_4.bct
+[   2.5845 ] Packing sdram param for instance[0]
+[   2.6491 ] Packing sdram param for instance[1]
+[   2.6494 ] Packing sdram param for instance[2]
+[   2.6497 ] Packing sdram param for instance[3]
+[   2.6497 ] Packing sdram param for instance[4]
+[   2.6497 ] Packing sdram param for instance[5]
+[   2.6497 ] Packing sdram param for instance[6]
+[   2.6497 ] Packing sdram param for instance[7]
+[   2.6497 ] Packing sdram param for instance[8]
+[   2.6497 ] Packing sdram param for instance[9]
+[   2.6497 ] Packing sdram param for instance[10]
+[   2.6497 ] Packing sdram param for instance[11]
+[   2.6497 ] Packing sdram param for instance[12]
+[   2.6497 ] Packing sdram param for instance[13]
+[   2.6497 ] Packing sdram param for instance[14]
+[   2.6498 ] Packing sdram param for instance[15]
+[   2.6498 ] 
+[   2.6527 ] tegrahost_v2 --chip 0x19 --align mem_rcm_aligned.bct
+[   2.6569 ] tegrahost_v2 --chip 0x19 0 --magicid MEMB --ratchet_blob ratchet_blob.bin --appendsigheader mem_rcm_aligned.bct zerosbk
+[   2.6586 ] adding BCH for mem_rcm_aligned.bct
+[   2.6962 ] tegrasign_v3.py --key None --list mem_rcm_aligned_sigheader.bct_list.xml --pubkeyhash pub_key.key
+[   2.6965 ] Assuming zero filled SBK key
+[   2.6993 ] Warning: pub_key.key is not found
+[   2.6698 ] tegrahost_v2 --chip 0x19 0 --updatesigheader mem_rcm_aligned_sigheader.bct.encrypt mem_rcm_aligned_sigheader.bct.hash zerosbk
+[   2.6728 ] Copying signatures
+[   2.6754 ] tegrahost_v2 --chip 0x19 0 --partitionlayout flash.xml.bin --updatesig images_list_signed.xml
+[   2.9702 ] Boot Rom communication
+[   2.9732 ] tegrarcm_v2 --chip 0x19 0 --rcm rcm_list_signed.xml
+[   2.9749 ] BR_CID: 0x88021911644571432400000016050140
+[   3.5211 ] RCM version 0X190001
+[   4.0851 ] Boot Rom communication completed
+[   6.1085 ] tegrarcm_v2 --isapplet
+[   6.1120 ] Applet version 01.00.0000
+[   7.2262 ] Sending BCTs
+[   7.2317 ] tegrarcm_v2 --download bct_bootrom br_bct_BR.bct --download bct_mb1 mb1_bct_MB1_sigheader.bct.encrypt --download bct_mem mem_rcm_sigheader.bct.encrypt
+[   7.2351 ] Applet version 01.00.0000
+[   8.3622 ] Sending bct_bootrom
+[   8.3627 ] [................................................] 100%
+[   8.3638 ] Sending bct_mb1
+[   8.3682 ] [................................................] 100%
+[   8.3724 ] Sending bct_mem
+[   8.4198 ] [................................................] 100%
+[   8.4560 ] Generating blob
+[   8.4626 ] tegrahost_v2 --chip 0x19 --align blob_nvtboot_recovery_cpu_t194_aligned.bin
+[   8.4709 ] tegrahost_v2 --chip 0x19 0 --magicid CPBL --ratchet_blob ratchet_blob.bin --appendsigheader blob_nvtboot_recovery_cpu_t194_aligned.bin zerosbk
+[   8.4733 ] adding BCH for blob_nvtboot_recovery_cpu_t194_aligned.bin
+[   8.5173 ] tegrasign_v3.py --key None --list blob_nvtboot_recovery_cpu_t194_aligned_sigheader.bin_list.xml --pubkeyhash pub_key.key
+[   8.5177 ] Assuming zero filled SBK key
+[   8.5203 ] Warning: pub_key.key is not found
+[   8.4905 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_nvtboot_recovery_cpu_t194_aligned_sigheader.bin.encrypt blob_nvtboot_recovery_cpu_t194_aligned_sigheader.bin.hash zerosbk
+[   8.5021 ] tegrahost_v2 --chip 0x19 --align blob_nvtboot_recovery_t194_aligned.bin
+[   8.5064 ] tegrahost_v2 --chip 0x19 0 --magicid MB2B --ratchet_blob ratchet_blob.bin --appendsigheader blob_nvtboot_recovery_t194_aligned.bin zerosbk
+[   8.5091 ] adding BCH for blob_nvtboot_recovery_t194_aligned.bin
+[   8.5556 ] tegrasign_v3.py --key None --list blob_nvtboot_recovery_t194_aligned_sigheader.bin_list.xml --pubkeyhash pub_key.key
+[   8.5560 ] Assuming zero filled SBK key
+[   8.5589 ] Warning: pub_key.key is not found
+[   8.5290 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_nvtboot_recovery_t194_aligned_sigheader.bin.encrypt blob_nvtboot_recovery_t194_aligned_sigheader.bin.hash zerosbk
+[   8.5386 ] tegrahost_v2 --chip 0x19 --align blob_preboot_c10_prod_cr_aligned.bin
+[   8.5443 ] tegrahost_v2 --chip 0x19 0 --magicid MTSP --appendsigheader blob_preboot_c10_prod_cr_aligned.bin zerosbk
+[   8.5460 ] Header already present for blob_preboot_c10_prod_cr_aligned.bin
+[   8.5821 ] tegrasign_v3.py --key None --list blob_preboot_c10_prod_cr_aligned_sigheader.bin_list.xml --pubkeyhash pub_key.key
+[   8.5824 ] Assuming zero filled SBK key
+[   8.5849 ] Warning: pub_key.key is not found
+[   8.5551 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_preboot_c10_prod_cr_aligned_sigheader.bin.encrypt blob_preboot_c10_prod_cr_aligned_sigheader.bin.hash zerosbk
+[   8.5598 ] tegrahost_v2 --chip 0x19 --align blob_mce_c10_prod_cr_aligned.bin
+[   8.5647 ] tegrahost_v2 --chip 0x19 0 --magicid MTSM --appendsigheader blob_mce_c10_prod_cr_aligned.bin zerosbk
+[   8.5659 ] Header already present for blob_mce_c10_prod_cr_aligned.bin
+[   8.6039 ] tegrasign_v3.py --key None --list blob_mce_c10_prod_cr_aligned_sigheader.bin_list.xml --pubkeyhash pub_key.key
+[   8.6042 ] Assuming zero filled SBK key
+[   8.6075 ] Warning: pub_key.key is not found
+[   8.5778 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_mce_c10_prod_cr_aligned_sigheader.bin.encrypt blob_mce_c10_prod_cr_aligned_sigheader.bin.hash zerosbk
+[   8.5882 ] tegrahost_v2 --chip 0x19 --align blob_mts_c10_prod_cr_aligned.bin
+[   8.5925 ] tegrahost_v2 --chip 0x19 0 --magicid MTSB --appendsigheader blob_mts_c10_prod_cr_aligned.bin zerosbk
+[   8.5948 ] adding BCH for blob_mts_c10_prod_cr_aligned.bin
+[   8.7269 ] tegrasign_v3.py --key None --list blob_mts_c10_prod_cr_aligned_sigheader.bin_list.xml --pubkeyhash pub_key.key
+[   8.7273 ] Assuming zero filled SBK key
+[   8.7378 ] Warning: pub_key.key is not found
+[   8.7083 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_mts_c10_prod_cr_aligned_sigheader.bin.encrypt blob_mts_c10_prod_cr_aligned_sigheader.bin.hash zerosbk
+[   8.7904 ] tegrahost_v2 --chip 0x19 --align blob_bpmp-2_t194_aligned.bin
+[   8.7947 ] tegrahost_v2 --chip 0x19 0 --magicid BPMF --ratchet_blob ratchet_blob.bin --appendsigheader blob_bpmp-2_t194_aligned.bin zerosbk
+[   8.7961 ] adding BCH for blob_bpmp-2_t194_aligned.bin
+[   8.8636 ] tegrasign_v3.py --key None --list blob_bpmp-2_t194_aligned_sigheader.bin_list.xml --pubkeyhash pub_key.key
+[   8.8640 ] Assuming zero filled SBK key
+[   8.8695 ] Warning: pub_key.key is not found
+[   8.8399 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_bpmp-2_t194_aligned_sigheader.bin.encrypt blob_bpmp-2_t194_aligned_sigheader.bin.hash zerosbk
+[   8.8629 ] tegrahost_v2 --chip 0x19 --align blob_tegra194-a02-bpmp-p3668-a00_lz4_aligned.dtb
+[   8.8669 ] tegrahost_v2 --chip 0x19 0 --magicid BPMD --ratchet_blob ratchet_blob.bin --appendsigheader blob_tegra194-a02-bpmp-p3668-a00_lz4_aligned.dtb zerosbk
+[   8.8693 ] adding BCH for blob_tegra194-a02-bpmp-p3668-a00_lz4_aligned.dtb
+[   8.9060 ] tegrasign_v3.py --key None --list blob_tegra194-a02-bpmp-p3668-a00_lz4_aligned_sigheader.dtb_list.xml --pubkeyhash pub_key.key
+[   8.9063 ] Assuming zero filled SBK key
+[   8.9091 ] Warning: pub_key.key is not found
+[   8.8799 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_tegra194-a02-bpmp-p3668-a00_lz4_aligned_sigheader.dtb.encrypt blob_tegra194-a02-bpmp-p3668-a00_lz4_aligned_sigheader.dtb.hash zerosbk
+[   8.9040 ] tegrahost_v2 --chip 0x19 --align blob_spe_t194_aligned.bin
+[   8.9095 ] tegrahost_v2 --chip 0x19 0 --magicid SPEF --ratchet_blob ratchet_blob.bin --appendsigheader blob_spe_t194_aligned.bin zerosbk
+[   8.9125 ] adding BCH for blob_spe_t194_aligned.bin
+[   8.9515 ] tegrasign_v3.py --key None --list blob_spe_t194_aligned_sigheader.bin_list.xml --pubkeyhash pub_key.key
+[   8.9518 ] Assuming zero filled SBK key
+[   8.9545 ] Warning: pub_key.key is not found
+[   8.9248 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_spe_t194_aligned_sigheader.bin.encrypt blob_spe_t194_aligned_sigheader.bin.hash zerosbk
+[   8.9318 ] tegrahost_v2 --chip 0x19 --align blob_tos-mon-only_t194_aligned.img
+[   8.9364 ] tegrahost_v2 --chip 0x19 0 --magicid TOSB --ratchet_blob ratchet_blob.bin --appendsigheader blob_tos-mon-only_t194_aligned.img zerosbk
+[   8.9379 ] adding BCH for blob_tos-mon-only_t194_aligned.img
+[   8.9769 ] tegrasign_v3.py --key None --list blob_tos-mon-only_t194_aligned_sigheader.img_list.xml --pubkeyhash pub_key.key
+[   8.9773 ] Assuming zero filled SBK key
+[   8.9804 ] Warning: pub_key.key is not found
+[   8.9514 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_tos-mon-only_t194_aligned_sigheader.img.encrypt blob_tos-mon-only_t194_aligned_sigheader.img.hash zerosbk
+[   8.9585 ] tegrahost_v2 --chip 0x19 --align blob_eks_aligned.img
+[   8.9630 ] tegrahost_v2 --chip 0x19 0 --magicid EKSB --ratchet_blob ratchet_blob.bin --appendsigheader blob_eks_aligned.img zerosbk
+[   8.9648 ] adding BCH for blob_eks_aligned.img
+[   9.0004 ] tegrasign_v3.py --key None --list blob_eks_aligned_sigheader.img_list.xml --pubkeyhash pub_key.key
+[   9.0007 ] Assuming zero filled SBK key
+[   9.0033 ] Warning: pub_key.key is not found
+[   8.9737 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_eks_aligned_sigheader.img.encrypt blob_eks_aligned_sigheader.img.hash zerosbk
+[   8.9788 ] tegrahost_v2 --chip 0x19 --align blob_tegra194-p3668-0001-p3509-0000_aligned.dtb
+[   8.9833 ] tegrahost_v2 --chip 0x19 0 --magicid CDTB --ratchet_blob ratchet_blob.bin --appendsigheader blob_tegra194-p3668-0001-p3509-0000_aligned.dtb zerosbk
+[   8.9846 ] adding BCH for blob_tegra194-p3668-0001-p3509-0000_aligned.dtb
+[   9.0320 ] tegrasign_v3.py --key None --list blob_tegra194-p3668-0001-p3509-0000_aligned_sigheader.dtb_list.xml --pubkeyhash pub_key.key
+[   9.0324 ] Assuming zero filled SBK key
+[   9.0360 ] Warning: pub_key.key is not found
+[   9.0064 ] tegrahost_v2 --chip 0x19 0 --updatesigheader blob_tegra194-p3668-0001-p3509-0000_aligned_sigheader.dtb.encrypt blob_tegra194-p3668-0001-p3509-0000_aligned_sigheader.dtb.hash zerosbk
+[   9.0182 ] tegrahost_v2 --chip 0x19 --generateblob blob.xml blob.bin
+[   9.0198 ] number of images in blob are 11
+[   9.0202 ] blobsize is 5602776
+[   9.0204 ] Added binary blob_nvtboot_recovery_cpu_t194_sigheader.bin.encrypt of size 232736
+[   9.0236 ] Added binary blob_nvtboot_recovery_t194_sigheader.bin.encrypt of size 206016
+[   9.0243 ] Added binary blob_preboot_c10_prod_cr_sigheader.bin.encrypt of size 24016
+[   9.0249 ] Added binary blob_mce_c10_prod_cr_sigheader.bin.encrypt of size 145184
+[   9.0256 ] Added binary blob_mts_c10_prod_cr_sigheader.bin.encrypt of size 3430416
+[   9.0267 ] Added binary blob_bpmp-2_t194_sigheader.bin.encrypt of size 1007392
+[   9.0282 ] Added binary blob_tegra194-a02-bpmp-p3668-a00_lz4_sigheader.dtb.encrypt of size 36176
+[   9.0288 ] Added binary blob_spe_t194_sigheader.bin.encrypt of size 95232
+[   9.0294 ] Added binary blob_tos-mon-only_t194_sigheader.img.encrypt of size 79888
+[   9.0300 ] Added binary blob_eks_sigheader.img.encrypt of size 5136
+[   9.0305 ] Added binary blob_tegra194-p3668-0001-p3509-0000_sigheader.dtb.encrypt of size 340400
+[   9.0325 ] Sending bootloader and pre-requisite binaries
+[   9.0356 ] tegrarcm_v2 --download blob blob.bin
+[   9.0373 ] Applet version 01.00.0000
+[  10.0198 ] Sending blob
+[  10.0202 ] [................................................] 100%
+[  10.8024 ] tegrarcm_v2 --boot recovery
+[  10.8047 ] Applet version 01.00.0000
+[  12.4913 ] tegrarcm_v2 --isapplet
+[ 1027.8101 ] tegrarcm_v2 --ismb2
+[ 2043.6177 ] tegradevflash_v2 --iscpubl
+[ 2043.6213 ] CPU Bootloader is not running on device.
+
