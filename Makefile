@@ -18,6 +18,7 @@ clean:
 directories:
 	mkdir -p $(BUILD_DIR)
 
+# E.g. make build JETSON_PATH=~/Downloads/Jetson_Linux_R35.2.1_aarch64.tbz2 FS_PATH=~/Downloads/Tegra_Linux_Sample-Root-Filesystem_R35.2.1_aarch64.tbz2
 .PHONY: build
 build: directories
 ifeq ("$(wildcard $(JETSON_OUTPUT_DIR))","")
