@@ -8,7 +8,7 @@ JETSON_OUTPUT_DIR = $(BUILD_DIR)/Linux_for_Tegra
 
 .PHONY: clean
 clean:
-	rm -rf build/*
+	sudo rm -rf build/*
 
 # ===========================
 # Build
